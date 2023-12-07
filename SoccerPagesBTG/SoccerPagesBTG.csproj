@@ -161,34 +161,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SubForms\AddEditField.cs">
+    <Compile Include="SubForms\Field\AddEditField.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\AddEditField.Designer.cs">
+    <Compile Include="SubForms\Field\AddEditField.Designer.cs">
       <DependentUpon>AddEditField.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\AddEditMember.cs">
+    <Compile Include="SubForms\Member\AddEditMember.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\AddEditMember.Designer.cs">
+    <Compile Include="SubForms\Member\AddEditMember.Designer.cs">
       <DependentUpon>AddEditMember.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\AddEditTeam.cs">
+    <Compile Include="SubForms\Teams\AddEditTeam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\AddEditTeam.Designer.cs">
+    <Compile Include="SubForms\Teams\AddEditTeam.Designer.cs">
       <DependentUpon>AddEditTeam.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\AddGame.cs">
+    <Compile Include="SubForms\Game\AddGame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\AddGame.Designer.cs">
+    <Compile Include="SubForms\Game\AddGame.Designer.cs">
       <DependentUpon>AddGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\AddToRoster.cs">
+    <Compile Include="SubForms\Teams\AddToRoster.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\AddToRoster.Designer.cs">
+    <Compile Include="SubForms\Teams\AddToRoster.Designer.cs">
       <DependentUpon>AddToRoster.cs</DependentUpon>
     </Compile>
     <Compile Include="DBClasses\Field.cs" />
@@ -201,33 +201,33 @@
     <Compile Include="BTGMain.Designer.cs">
       <DependentUpon>BTGMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\Login.cs">
+    <Compile Include="SubForms\Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\Login.Designer.cs">
+    <Compile Include="SubForms\Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="SubForms\AddEditField.resx">
+    <EmbeddedResource Include="SubForms\Field\AddEditField.resx">
       <DependentUpon>AddEditField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\AddEditMember.resx">
+    <EmbeddedResource Include="SubForms\Member\AddEditMember.resx">
       <DependentUpon>AddEditMember.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\AddEditTeam.resx">
+    <EmbeddedResource Include="SubForms\Teams\AddEditTeam.resx">
       <DependentUpon>AddEditTeam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\AddGame.resx">
+    <EmbeddedResource Include="SubForms\Game\AddGame.resx">
       <DependentUpon>AddGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\AddToRoster.resx">
+    <EmbeddedResource Include="SubForms\Teams\AddToRoster.resx">
       <DependentUpon>AddToRoster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BTGMain.resx">
       <DependentUpon>BTGMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\Login.resx">
+    <EmbeddedResource Include="SubForms\Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
