@@ -7,14 +7,14 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using MongoDB.Bson.Serialization;
-using MongoDB.Bson;
 
 namespace SoccerPagesBTG.DBClasses
 {
     public class Game
     {
-        private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
-        private static readonly string db_str = "BTG_DB";
+        private static readonly string conn_str = Properties.Settings.Default.mongoDbConnect;
+        private static readonly string db_str = Properties.Settings.Default.db;
+
 
         [BsonId]
         public ObjectId Id { get; set; }
@@ -31,13 +31,14 @@ namespace SoccerPagesBTG.DBClasses
         [BsonElement("AwayScore")]
         public int AwayScore { get; set; }
 
-
-
         [BsonElement("Location")]
         public string Location { get; set; }
 
+        [BsonElement("GameDate")]
+        public DateTime GameDate { get; set; }
+
         [BsonElement("GameTime")]
-        public DateTime Time { get; set; }
+        public string GameTime { get; set; }
 
         [BsonElement("REF1")]
         public string Ref1 { get; set; }
@@ -51,12 +52,12 @@ namespace SoccerPagesBTG.DBClasses
         [BsonElement("NotificationOn")]
         public string Notification { get; set; }
 
+
         public static void CreateDBRecord(Game g)
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
             var collection = db.GetCollection<Game>("Games");
-
             collection.InsertOne(g);
         }
 
@@ -72,7 +73,7 @@ namespace SoccerPagesBTG.DBClasses
             return games;
         }
 
-        public static List<Game> GetAllPlayedGames(string t)
+        public static List<Game> GetAllTeamPlayedGames(string team)
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
@@ -84,8 +85,8 @@ namespace SoccerPagesBTG.DBClasses
                    Builders<Game>.Filter.Ne(g => g.AwayScore, -1)
                ),
                Builders<Game>.Filter.Or(
-                   Builders<Game>.Filter.Eq(g => g.HomeTeam, t),
-                   Builders<Game>.Filter.Eq(g => g.AwayTeam, t)
+                   Builders<Game>.Filter.Eq(g => g.HomeTeam, team),
+                   Builders<Game>.Filter.Eq(g => g.AwayTeam, team)
                )
            );
 
@@ -94,10 +95,10 @@ namespace SoccerPagesBTG.DBClasses
             return playedGames;
         }
 
-        internal static int[] GetTeamRecord(string t)
+        public static int[] GetTeamRecord(string t)
         {
 
-            List<Game> games = GetAllPlayedGames(t);
+            List<Game> games = GetAllTeamPlayedGames(t);
 
             int w=0, l=0, d=0;
             foreach(var game in games)
@@ -119,7 +120,7 @@ namespace SoccerPagesBTG.DBClasses
             return record;
         }
 
-        internal static List<Game> GetGamesByDate(DateTime dt)
+        public static List<Game> GetGamesByDate(DateTime dt)
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
@@ -129,13 +130,44 @@ namespace SoccerPagesBTG.DBClasses
             DateTime utcDate = TimeZoneInfo.ConvertTimeToUtc(dt);
 
             // Construct the filter to find games within the specified date
+
             var filter = Builders<Game>.Filter.And(
-                Builders<Game>.Filter.Gte(g => g.Time, utcDate.Date),
-                Builders<Game>.Filter.Lt(g => g.Time, utcDate.Date.AddDays(1))
+                Builders<Game>.Filter.Gte(g => g.GameDate, utcDate.Date.AddDays(-.5)),
+                Builders<Game>.Filter.Lte(g => g.GameDate, utcDate.Date.AddDays(.5))
             );
 
             List<Game> games = collection.Find(filter).ToList();
             return games;
+        }
+
+        public static (string ConflictType, string ConflictingItem) CheckSchedulingConflicts(Game g1, Game g2)
+        {
+            if (g1.GameDate == g2.GameDate && g1.GameTime == g2.GameTime)
+            {
+                if (string.Equals(g1.Location, g2.Location, StringComparison.OrdinalIgnoreCase)) { return ("Location", g1.Location); }
+
+                if (TeamConflict(g1.HomeTeam, g2)) { return ("Team", g1.HomeTeam); }
+                if (TeamConflict(g1.AwayTeam, g2)) { return ("Team", g1.AwayTeam); }
+
+                if (RefereeConflict(g1.Ref1, g2)) { return ("Referee", g1.Ref1); }
+                if (RefereeConflict(g1.Ref2, g2)) { return ("Referee", g1.Ref2); }
+                if (RefereeConflict(g1.Ref3, g2)) { return ("Referee", g1.Ref3); }
+            }
+            return ("None", null);
+        }
+
+        private static bool TeamConflict(string team, Game game)
+        {
+            return string.Equals(team, game.HomeTeam, StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(team, game.AwayTeam, StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool RefereeConflict(string referee, Game game)
+        {
+            return !string.IsNullOrEmpty(referee) &&
+                   (string.Equals(referee, game.Ref1, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(referee, game.Ref2, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(referee, game.Ref3, StringComparison.OrdinalIgnoreCase));
         }
     }
 }

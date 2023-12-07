@@ -77,7 +77,7 @@ namespace SoccerPagesBTG
             this.labelTeamName.Name = "labelTeamName";
             this.labelTeamName.Size = new System.Drawing.Size(113, 36);
             this.labelTeamName.TabIndex = 0;
-            this.labelTeamName.Text = "Name";
+            this.labelTeamName.Text = "Team Name";
             this.labelTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBoxName
@@ -108,7 +108,6 @@ namespace SoccerPagesBTG
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK/Commit";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonCancel
             // 

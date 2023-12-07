@@ -1,7 +1,7 @@
 ﻿
 namespace SoccerPagesBTG
 {
-    partial class AddEditGame
+    partial class AddGame
     {
         /// <summary>
         /// Required designer variable.
@@ -44,16 +44,11 @@ namespace SoccerPagesBTG
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDownHome = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownAway = new System.Windows.Forms.NumericUpDown();
             this.buttonOKCommit = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.comboBoxLocation = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAway)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimePicker1
@@ -73,7 +68,7 @@ namespace SoccerPagesBTG
             this.buttonPreviousWeek.TabIndex = 1;
             this.buttonPreviousWeek.Text = "Previous";
             this.buttonPreviousWeek.UseVisualStyleBackColor = true;
-            this.buttonPreviousWeek.Click += new System.EventHandler(this.buttonPreviousWeek_Click);
+            this.buttonPreviousWeek.Click += new System.EventHandler(this.ButtonPreviousWeek_Click);
             // 
             // buttonNextWeek
             // 
@@ -83,7 +78,7 @@ namespace SoccerPagesBTG
             this.buttonNextWeek.TabIndex = 2;
             this.buttonNextWeek.Text = "Next";
             this.buttonNextWeek.UseVisualStyleBackColor = true;
-            this.buttonNextWeek.Click += new System.EventHandler(this.buttonNextWeek_Click);
+            this.buttonNextWeek.Click += new System.EventHandler(this.ButtonNextWeek_Click);
             // 
             // panel1
             // 
@@ -97,9 +92,9 @@ namespace SoccerPagesBTG
             this.comboBoxHome.FormattingEnabled = true;
             this.comboBoxHome.Location = new System.Drawing.Point(58, 100);
             this.comboBoxHome.Name = "comboBoxHome";
-            this.comboBoxHome.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxHome.Size = new System.Drawing.Size(177, 21);
             this.comboBoxHome.TabIndex = 4;
-            this.comboBoxHome.SelectedIndexChanged += new System.EventHandler(this.comboBoxHome_SelectedIndexChanged);
+            this.comboBoxHome.SelectedIndexChanged += new System.EventHandler(this.ComboBoxHome_SelectedIndexChanged);
             // 
             // labelHome
             // 
@@ -124,9 +119,9 @@ namespace SoccerPagesBTG
             this.comboBoxAway.FormattingEnabled = true;
             this.comboBoxAway.Location = new System.Drawing.Point(58, 127);
             this.comboBoxAway.Name = "comboBoxAway";
-            this.comboBoxAway.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxAway.Size = new System.Drawing.Size(177, 21);
             this.comboBoxAway.TabIndex = 6;
-            this.comboBoxAway.SelectedIndexChanged += new System.EventHandler(this.comboBoxAway_SelectedIndexChanged);
+            this.comboBoxAway.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAway_SelectedIndexChanged);
             // 
             // comboBoxGameTime
             // 
@@ -138,7 +133,7 @@ namespace SoccerPagesBTG
             "12:25"});
             this.comboBoxGameTime.Location = new System.Drawing.Point(59, 38);
             this.comboBoxGameTime.Name = "comboBoxGameTime";
-            this.comboBoxGameTime.Size = new System.Drawing.Size(128, 21);
+            this.comboBoxGameTime.Size = new System.Drawing.Size(69, 21);
             this.comboBoxGameTime.TabIndex = 8;
             // 
             // comboBoxRef1
@@ -146,27 +141,27 @@ namespace SoccerPagesBTG
             this.comboBoxRef1.FormattingEnabled = true;
             this.comboBoxRef1.Location = new System.Drawing.Point(73, 159);
             this.comboBoxRef1.Name = "comboBoxRef1";
-            this.comboBoxRef1.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxRef1.Size = new System.Drawing.Size(162, 21);
             this.comboBoxRef1.TabIndex = 9;
-            this.comboBoxRef1.SelectedIndexChanged += new System.EventHandler(this.comboBoxRef1_SelectedIndexChanged);
+            this.comboBoxRef1.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRef1_SelectedIndexChanged);
             // 
             // comboBoxRef2
             // 
             this.comboBoxRef2.FormattingEnabled = true;
             this.comboBoxRef2.Location = new System.Drawing.Point(73, 184);
             this.comboBoxRef2.Name = "comboBoxRef2";
-            this.comboBoxRef2.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxRef2.Size = new System.Drawing.Size(162, 21);
             this.comboBoxRef2.TabIndex = 10;
-            this.comboBoxRef2.SelectedIndexChanged += new System.EventHandler(this.comboBoxRef2_SelectedIndexChanged);
+            this.comboBoxRef2.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRef2_SelectedIndexChanged);
             // 
             // comboBoxRef3
             // 
             this.comboBoxRef3.FormattingEnabled = true;
             this.comboBoxRef3.Location = new System.Drawing.Point(73, 209);
             this.comboBoxRef3.Name = "comboBoxRef3";
-            this.comboBoxRef3.Size = new System.Drawing.Size(129, 21);
+            this.comboBoxRef3.Size = new System.Drawing.Size(162, 21);
             this.comboBoxRef3.TabIndex = 11;
-            this.comboBoxRef3.SelectedIndexChanged += new System.EventHandler(this.comboBoxRef3_SelectedIndexChanged);
+            this.comboBoxRef3.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRef3_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -195,51 +190,16 @@ namespace SoccerPagesBTG
             this.label4.TabIndex = 14;
             this.label4.Text = "Referee3";
             // 
-            // numericUpDownHome
-            // 
-            this.numericUpDownHome.Location = new System.Drawing.Point(199, 100);
-            this.numericUpDownHome.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownHome.Name = "numericUpDownHome";
-            this.numericUpDownHome.Size = new System.Drawing.Size(44, 20);
-            this.numericUpDownHome.TabIndex = 15;
-            this.numericUpDownHome.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            // 
-            // numericUpDownAway
-            // 
-            this.numericUpDownAway.Location = new System.Drawing.Point(199, 128);
-            this.numericUpDownAway.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDownAway.Name = "numericUpDownAway";
-            this.numericUpDownAway.Size = new System.Drawing.Size(44, 20);
-            this.numericUpDownAway.TabIndex = 16;
-            this.numericUpDownAway.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            -2147483648});
-            // 
             // buttonOKCommit
             // 
             this.buttonOKCommit.BackColor = System.Drawing.Color.LightGray;
-            this.buttonOKCommit.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOKCommit.Location = new System.Drawing.Point(260, 165);
             this.buttonOKCommit.Name = "buttonOKCommit";
             this.buttonOKCommit.Size = new System.Drawing.Size(75, 23);
             this.buttonOKCommit.TabIndex = 17;
             this.buttonOKCommit.Text = "OK/Commit";
             this.buttonOKCommit.UseVisualStyleBackColor = false;
-            this.buttonOKCommit.Click += new System.EventHandler(this.buttonOKCommit_Click);
+            this.buttonOKCommit.Click += new System.EventHandler(this.ButtonOKCommit_Click);
             // 
             // buttonCancel
             // 
@@ -251,15 +211,6 @@ namespace SoccerPagesBTG
             this.buttonCancel.TabIndex = 18;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(203, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Result";
             // 
             // label6
             // 
@@ -289,7 +240,7 @@ namespace SoccerPagesBTG
             "12:25"});
             this.comboBoxLocation.Location = new System.Drawing.Point(58, 68);
             this.comboBoxLocation.Name = "comboBoxLocation";
-            this.comboBoxLocation.Size = new System.Drawing.Size(128, 21);
+            this.comboBoxLocation.Size = new System.Drawing.Size(177, 21);
             this.comboBoxLocation.TabIndex = 22;
             // 
             // AddEditGame
@@ -301,11 +252,8 @@ namespace SoccerPagesBTG
             this.Controls.Add(this.comboBoxLocation);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOKCommit);
-            this.Controls.Add(this.numericUpDownAway);
-            this.Controls.Add(this.numericUpDownHome);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -323,8 +271,6 @@ namespace SoccerPagesBTG
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "AddEditGame";
             this.Text = "AddGame";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHome)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAway)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,11 +293,8 @@ namespace SoccerPagesBTG
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDownHome;
-        private System.Windows.Forms.NumericUpDown numericUpDownAway;
         private System.Windows.Forms.Button buttonOKCommit;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBoxLocation;

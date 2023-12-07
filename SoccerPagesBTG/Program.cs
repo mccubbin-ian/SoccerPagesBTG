@@ -8,6 +8,7 @@ namespace SoccerPagesBTG
 {
     static class Program
     {
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,6 +18,7 @@ namespace SoccerPagesBTG
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormBTG());
+            
         }
     }
 }

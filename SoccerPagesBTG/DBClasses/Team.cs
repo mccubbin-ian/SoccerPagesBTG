@@ -9,8 +9,8 @@ namespace SoccerPagesBTG.DBClasses
 {
     class Team
     {
-        private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
-        private static readonly string db_str = "BTG_DB";
+        private static readonly string conn_str = Properties.Settings.Default.mongoDbConnect;
+        private static readonly string db_str = Properties.Settings.Default.db;
 
         [BsonId]
         public ObjectId Id { get; set; }
@@ -20,6 +20,9 @@ namespace SoccerPagesBTG.DBClasses
 
         [BsonElement("ManagerID")]
         public string ManagerID { get; set; }
+
+        [BsonElement("CaptianID")]
+        public string CaptainID { get; set; }
 
         public Team() { }
 
@@ -52,6 +55,17 @@ namespace SoccerPagesBTG.DBClasses
             var filter = Builders<Team>.Filter.Eq("Name", n);
             var team = collection.Find(filter).FirstOrDefault();
             return team.Id.ToString();
+        }
+
+        internal static List<Team> GetTeams()
+        {
+            MongoClient client = new MongoClient(conn_str);
+            var db = client.GetDatabase(db_str);
+            var collection = db.GetCollection<Team>("Teams");
+
+            List<Team> teams = collection.Find(_ => true).ToList();
+
+            return teams;
         }
 
         internal static List<string> GetTeamNames()

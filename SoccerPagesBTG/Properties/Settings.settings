@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SoccerPagesBTG.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="mongoDbConnect" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/</Value>
+    </Setting>
+    <Setting Name="db" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BTG_DB</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

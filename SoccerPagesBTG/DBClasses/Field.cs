@@ -8,8 +8,8 @@ namespace SoccerPagesBTG.DBClasses
 {
     public class Field
     {
-        private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
-        private static readonly string db_str = "BTG_DB";
+        private static readonly string conn_str = Properties.Settings.Default.mongoDbConnect;
+        private static readonly string db_str = Properties.Settings.Default.db;
 
         [BsonId]
         public ObjectId Id { get; set; }
@@ -78,7 +78,6 @@ namespace SoccerPagesBTG.DBClasses
                 Zip = r.Cells["Zip"].Value?.ToString(),
                 Id = ObjectId.Parse(r.Cells["Id"].Value.ToString())
             };
-
             return f;
         }
         public static void CreateDBRecord(Field f)

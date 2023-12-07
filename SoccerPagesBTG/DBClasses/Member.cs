@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace SoccerPagesBTG.DBClasses
 {
-    class Member
+    public class Member
     {
-        private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
-        private static readonly string db_str = "BTG_DB";
+        private static readonly string conn_str = Properties.Settings.Default.mongoDbConnect;
+        private static readonly string db_str = Properties.Settings.Default.db;
 
         [BsonId]
         public ObjectId Id { get; set; }
@@ -31,8 +31,20 @@ namespace SoccerPagesBTG.DBClasses
         [BsonElement("IsRef")]
         public bool IsRef { get; set; }
 
+        [BsonElement("IsScheduler")]
+        public bool IsScheduler { get; set; }
+
+        [BsonElement("IsAdmin")]
+        public bool IsAdmin { get; set; }
+
         [BsonElement("EligibleToPlay")]
         public DateTime EligibleDate { get; set; }
+
+        [BsonElement("email")]
+        public string Email { get; set; }
+
+        [BsonElement("notes")]
+        public string Notes { get; set; }
 
         public Member() { }
 
@@ -47,7 +59,7 @@ namespace SoccerPagesBTG.DBClasses
             var filter = Builders<Member>.Filter.Eq("First_name", fname) & Builders<Member>.Filter.Eq("Last_name", lname);
 
             var member = collection.Find(filter).FirstOrDefault();
-            return member.Id.ToString();
+            return member != null ? member.Id.ToString() : string.Empty;
         }
 
         internal static string[] GetNameById(string Id)
@@ -68,18 +80,6 @@ namespace SoccerPagesBTG.DBClasses
             return name;
         }
 
-        public static List<string> GetPlayersWithoutTeams()
-        {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
-            
-            var filter = Builders<Member>.Filter.Eq("TeamId", "") & Builders<Member>.Filter.Eq("IsPlayer", true);
-            var membersWithNullTeam = collection.Find(filter).ToList();
-
-            return membersWithNullTeam.Select(member => $"{member.Last_name}, {member.First_name}").ToList();
-        }
-
         public static void CreateMember(Member m)
         {
             MongoClient client = new MongoClient(conn_str);
@@ -89,43 +89,67 @@ namespace SoccerPagesBTG.DBClasses
             collection.InsertOne(m);
         }
 
-        public static void UpdateMember(Member m)
+        public static void UpdateMember(Member updatedMember)
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
             var collection = db.GetCollection<Member>("Members");
 
-            var filter = Builders<Member>.Filter.Eq(s => s.Id, m.Id);
-            var result = collection.ReplaceOne(filter, m);
+            var filter = Builders<Member>.Filter.Eq(s => s.Id, updatedMember.Id);
+            var result = collection.ReplaceOne(filter, updatedMember);
         }
 
         public static Member GetMemberById(string id)
         {
+            if (string.IsNullOrEmpty(id)) { return null; }
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
             var collection = db.GetCollection<Member>("Members");
-            return collection.Find(member => member.Id == ObjectId.Parse(id)).FirstOrDefault();
+
+            try
+            {
+                var filter = Builders<Member>.Filter.Eq("_id", ObjectId.Parse(id));
+                return collection.Find(filter).FirstOrDefault();
+            }
+            catch (FormatException)
+            {
+                // Handle the case where id is not a valid ObjectId
+                return null;
+            }
         }
 
-        public static List<string> GetAllMembers()
+        public static List<Member> GetAllMembers()
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
             var collection = db.GetCollection<Member>("Members");
 
             List<Member> members = collection.Find(_ => true).ToList();
-            return members.Select(member => $"{member.Last_name}, {member.First_name}").ToList();
+            return members;
         }
 
-        public static List<string> GetReferees()
+        public static List<Member> GetReferees()
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
             var collection = db.GetCollection<Member>("Members");
 
-            var filter = Builders<Member>.Filter.Eq("TeamId", "") & Builders<Member>.Filter.Eq("IsRef", true);
+            var filter = Builders<Member>.Filter.Eq("IsRef", true);
             var referees = collection.Find(filter).ToList();
-            return referees.Select(referee => $"{referee.Last_name}, {referee.First_name}").ToList();
+            return referees;
+        }
+
+        public static List<Member> GetFreeAgents()
+        {
+            MongoClient client = new MongoClient(conn_str);
+            var db = client.GetDatabase(db_str);
+            var collection = db.GetCollection<Member>("Members");
+
+            // Define a filter to find players without a team
+            var filter = Builders<Member>.Filter.Where(member => member.IsPlayer && string.IsNullOrEmpty(member.TeamId));
+
+            // Execute the query
+            return collection.Find(filter).ToList();
         }
 
     }

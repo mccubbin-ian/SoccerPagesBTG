@@ -17,9 +17,12 @@ namespace SoccerPagesBTG
         public AddToRoster(string t_id)
         {
             InitializeComponent();
-            List<string> fa = Member.GetPlayersWithoutTeams();
-            fa.Sort();
-            comboBox1.DataSource = fa;
+            comboBox1.Items.Clear();
+            List<Member> fa = Member.GetFreeAgents();
+            foreach (Member m in fa)
+            {
+                comboBox1.Items.Add($"{m.Last_name}, {m.First_name}");
+            }
             team_id = t_id;
         }
 
@@ -27,7 +30,6 @@ namespace SoccerPagesBTG
         {
             string[] name = comboBox1.SelectedItem.ToString().Split(',');
             player_id = Member.GetIdByName(name[1].Trim(), name[0]);
-
         }
     }
 }

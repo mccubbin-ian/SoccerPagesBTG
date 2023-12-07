@@ -22,15 +22,6 @@ namespace SoccerPagesBTG
         private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
         private static readonly string db_str = "BTG_DB";
 
-        private void buttonOK_Click(object sender, EventArgs e)
-        {
-            name = textBoxName.Text;
-            string[] mgr_name=comboBox1.SelectedItem.ToString().Split(',');
-            string f_name = mgr_name[1].Trim();
-            string l_name = mgr_name[0].Trim();
-            manager=Member.GetIdByName(f_name, l_name);
-        }
-
         public AddEditTeam()
         {
             InitializeComponent();
