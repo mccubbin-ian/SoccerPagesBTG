@@ -21,6 +21,11 @@ namespace SoccerPagesBTG
         public FormBTG()
         {
             InitializeComponent();
+            InitializeAsync();
+        }
+
+        private async Task InitializeAsync()
+        {
             FormLogin loginForm = new FormLogin();
             if (loginForm.ShowDialog() == DialogResult.OK)
             {
@@ -29,7 +34,7 @@ namespace SoccerPagesBTG
                     string uId = loginForm.loginId;
                     login = Member.GetMemberById(uId);
                     Text += " " + login.Last_name + ", " + login.First_name;
-                    
+
                 }
                 EstablishUserAccess(login);
             }
@@ -38,85 +43,85 @@ namespace SoccerPagesBTG
             DateTime nextSunday = today.AddDays(daysUntilSunday);
             dateTimePickerUpcomingGames.Value = nextSunday.Date;
             UpdateTeamPage();
-            UpdateMatchPage(); 
-            UpdateMemberPage(Member.GetAllMembers());
+            UpdateMatchPage();
+            UpdateMemberPage(await Member.GetAllMembersAsync());
             UpdateFieldPage();
-            Task.Run(()=> runMailStop());
+            Task.Run(() => RunMailStop());
         }
 
         private void EstablishUserAccess(Member login)
         {
             if (login == null)
             {
-                buttonAddField.Visible =
-                buttonAddGame.Visible =
-                buttonRemoveField.Visible =
-                buttonAddMember.Visible =
-                buttonRemoveMember.Visible =
-                buttonAddPlayer.Visible =
-                buttonAddTeam.Visible =
-                buttonDropPlayer.Visible =
-                buttonReportScore.Visible = false;
+                buttonAddField.Enabled =
+                buttonAddGame.Enabled =
+                buttonRemoveField.Enabled =
+                buttonAddMember.Enabled =
+                buttonRemoveMember.Enabled =
+                buttonAddPlayer.Enabled =
+                buttonAddTeam.Enabled =
+                buttonDropPlayer.Enabled =
+                buttonReportScore.Enabled = false;
                 return;
             }
             if(login.IsAdmin)
             {
-                buttonAddField.Visible = 
-                buttonAddGame.Visible = 
-                buttonAddMember.Visible = 
-                buttonRemoveMember.Visible = 
-                buttonAddPlayer.Visible = 
-                buttonAddTeam.Visible = 
-                buttonDropPlayer.Visible = 
-                buttonRemoveField.Visible = 
-                buttonReportScore.Visible = true;
+                buttonAddField.Enabled = 
+                buttonAddGame.Enabled = 
+                buttonAddMember.Enabled = 
+                buttonRemoveMember.Enabled = 
+                buttonAddPlayer.Enabled = 
+                buttonAddTeam.Enabled = 
+                buttonDropPlayer.Enabled = 
+                buttonRemoveField.Enabled = 
+                buttonReportScore.Enabled = true;
                 return;
             }
             else if (login.IsScheduler)
             {
-                buttonAddField.Visible =
-                buttonAddGame.Visible =
-                buttonRemoveField.Visible = true;
+                buttonAddField.Enabled =
+                buttonAddGame.Enabled =
+                buttonRemoveField.Enabled = true;
 
-                buttonAddMember.Visible = 
-                buttonRemoveMember.Visible = 
-                buttonAddPlayer.Visible = 
-                buttonAddTeam.Visible = 
-                buttonDropPlayer.Visible = 
-                buttonReportScore.Visible = false;
+                buttonAddMember.Enabled = 
+                buttonRemoveMember.Enabled = 
+                buttonAddPlayer.Enabled = 
+                buttonAddTeam.Enabled = 
+                buttonDropPlayer.Enabled = 
+                buttonReportScore.Enabled = false;
                 return;
             }
             else if (login.IsRef)
             {
-                buttonAddField.Visible = 
-                buttonAddGame.Visible = 
-                buttonRemoveField.Visible = 
-                buttonAddMember.Visible = 
-                buttonRemoveMember.Visible = 
-                buttonAddPlayer.Visible = 
-                buttonAddTeam.Visible = 
-                buttonDropPlayer.Visible = false;
+                buttonAddField.Enabled = 
+                buttonAddGame.Enabled = 
+                buttonRemoveField.Enabled = 
+                buttonAddMember.Enabled = 
+                buttonRemoveMember.Enabled = 
+                buttonAddPlayer.Enabled = 
+                buttonAddTeam.Enabled = 
+                buttonDropPlayer.Enabled = false;
 
-                buttonReportScore.Visible = true;
+                buttonReportScore.Enabled = true;
                 return;
             }
             else if (login.IsPlayer)
             {
-                buttonAddField.Visible = 
-                buttonAddGame.Visible = 
-                buttonRemoveField.Visible = 
-                buttonAddMember.Visible = 
-                buttonRemoveMember.Visible =
-                buttonAddPlayer.Visible = 
-                buttonAddTeam.Visible = 
-                buttonDropPlayer.Visible = 
-                buttonReportScore.Visible = false;
+                buttonAddField.Enabled = 
+                buttonAddGame.Enabled = 
+                buttonRemoveField.Enabled = 
+                buttonAddMember.Enabled = 
+                buttonRemoveMember.Enabled =
+                buttonAddPlayer.Enabled = 
+                buttonAddTeam.Enabled = 
+                buttonDropPlayer.Enabled = 
+                buttonReportScore.Enabled = false;
                 return;
             }
 
         }
 
-        static async void runMailStop()
+        static async void RunMailStop()
         {
 
             string file = @"C:\Users\mccubbii\Documents\BTG\Mailstop\mailstop.exe";
@@ -170,6 +175,7 @@ namespace SoccerPagesBTG
 
         private void UpdateMatchBoard()
         {
+            buttonReportScore.Visible = buttonReportScore.Enabled && dateTimePickerUpcomingGames.Value.Date <= DateTime.Now.Date;
             dataGridViewMatches.Rows.Clear();
             List<Game> games= Game.GetGamesByDate(dateTimePickerUpcomingGames.Value);
             foreach (Game g in games)
@@ -189,7 +195,7 @@ namespace SoccerPagesBTG
             }
         }
 
-        private void buttonAddGame_Click(object sender, EventArgs e)
+        private void ButtonAddGame_Click(object sender, EventArgs e)
         {
             using (AddGame aeg = new AddGame())
             {
@@ -200,7 +206,7 @@ namespace SoccerPagesBTG
             }
         }
 
-        private void buttonPrevWeekGames_Click(object sender, EventArgs e)
+        private void ButtonPrevWeekGames_Click(object sender, EventArgs e)
         {
             DateTime dt = dateTimePickerUpcomingGames.Value;
             dt = dt.AddDays(-7);
@@ -208,7 +214,7 @@ namespace SoccerPagesBTG
             UpdateMatchBoard();
         }
 
-        private void buttonNextWeekGames_Click(object sender, EventArgs e)
+        private void ButtonNextWeekGames_Click(object sender, EventArgs e)
         {
             DateTime dt = dateTimePickerUpcomingGames.Value;
             dt = dt.AddDays(7);
@@ -216,7 +222,7 @@ namespace SoccerPagesBTG
             UpdateMatchBoard();
         }
 
-        private void dataGridViewMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
@@ -228,7 +234,7 @@ namespace SoccerPagesBTG
             listBoxFields.DataSource = Field.GetAllFields().Select(f => f.Name).ToList();
         }
 
-        private void buttonAddField_Click(object sender, EventArgs e)
+        private void ButtonAddField_Click(object sender, EventArgs e)
         {
             using (AddEditField aef = new AddEditField())
             {
@@ -240,7 +246,7 @@ namespace SoccerPagesBTG
             listBoxFields.DataSource = Field.GetAllFields().Select(f => f.Name).ToList();
         }
 
-        private void listBoxFields_DoubleClick(object sender, EventArgs e)
+        private void ListBoxFields_DoubleClick(object sender, EventArgs e)
         {
             if (login == null) { return; }
             else if (login.IsAdmin || login.IsScheduler)
@@ -261,7 +267,7 @@ namespace SoccerPagesBTG
 
         }
 
-        private void listBoxFields_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBoxFields_SelectedIndexChanged(object sender, EventArgs e)
         {
             Field f = Field.GetFieldbyName(listBoxFields.SelectedItem.ToString());
             textBoxID.Text = f.Id.ToString();
@@ -276,20 +282,29 @@ namespace SoccerPagesBTG
         #endregion
 
         #region MemberPage
-        private void buttonAddMember_Click(object sender, EventArgs e)
+        private async void ButtonAddMember_Click(object sender, EventArgs e)
         {
             using (AddEditMember aem = new AddEditMember(login))
             {
                 if (aem.ShowDialog() != DialogResult.OK) { }
-                else { AddUpdateMember(aem); }
+                else { await AddUpdateMemberAsync(aem); }
             }
-            UpdateMemberPage(Member.GetAllMembers());
+
+            UpdateMemberPage(await Member.GetAllMembersAsync());
         }
 
-        private void dataGridViewMembers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private async Task AddUpdateMemberAsync(AddEditMember aem)
+        {
+            await Task.Run(() => AddUpdateMember(aem));
+        }
+
+        private async void DataGridViewMembers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (login == null) { return; }
-            Member m = Member.GetMemberById(dataGridViewMembers.Rows[e.RowIndex].Cells["ColumnMemberId"].Value.ToString());
+
+            string memberId = dataGridViewMembers.Rows[e.RowIndex].Cells["ColumnMemberId"].Value.ToString();
+            Member m = Member.GetMemberById(memberId);
+
             if (login.IsAdmin || login.Id.ToString() == m.Id.ToString())
             {
                 using (AddEditMember aem = new AddEditMember(login, m))
@@ -297,147 +312,14 @@ namespace SoccerPagesBTG
                     if (aem.ShowDialog() != DialogResult.OK) { }
                     else
                     {
-                        AddUpdateMember(aem);
-                        UpdateMemberPage(Member.GetAllMembers());
+                        await AddUpdateMemberAsync(aem);
+                        UpdateMemberPage(await Member.GetAllMembersAsync());
                     }
                 }
             }
-
         }
 
-        private static void AddUpdateMember(AddEditMember aem)
-        {
-            Member newMember = aem.newMember;
-            Member oldMember = aem.oldMember;
-            if (aem.oldMember != null)
-            {
-                string message = "You have updated user:\n " +
-                    $"First_Name: {oldMember.First_name} to {newMember.First_name}\n" +
-                    $"Last_Name: {oldMember.Last_name} to {newMember.Last_name}\n" +
-                    $"E-mail: {oldMember.Email} to {newMember.Email}\n" +
-                    $"Team: {Team.GetTeamNameById(oldMember.TeamId)} to {Team.GetTeamNameById(newMember.TeamId)}\n" +
-                    $"isPlayer: {oldMember.IsPlayer} to {newMember.IsPlayer}\n" +
-                    $"isRef: {oldMember.IsRef} to {newMember.IsRef}\n" +
-                    $"isAdmin: {oldMember.IsAdmin} to {newMember.IsAdmin}\n" +
-                    $"isScheduler: {oldMember.IsScheduler} to {newMember.IsScheduler}\n" +
-                    $"EligibleDate: {oldMember.EligibleDate.Date} to {newMember.EligibleDate.Date}\n" +
-                    $"Notes: {oldMember.Notes} to {newMember.Notes}\n" +
-                    "Confirm Changes?";
-                var result = MessageBox.Show(message, "Edit User", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes) { Member.UpdateMember(newMember); }
-            }
-            else
-            {
-                string message = message = "You have created a new user:\n " +
-                    $"First_Name: {newMember.First_name}\n" +
-                    $"Last_Name: {newMember.Last_name}\n" +
-                    $"E-mail: {newMember.Email}\n" +
-                    $"Team: {Team.GetTeamNameById(newMember.TeamId)}\n" +
-                    $"isPlayer: {newMember.IsPlayer}\n" +
-                    $"isRef: {newMember.IsRef}\n" +
-                    $"isAdmin: {newMember.IsAdmin}\n" +
-                    $"isScheduler: {newMember.IsScheduler}\n" +
-                    $"EligibleDate: {newMember.EligibleDate.Date}\n" +
-                    $"Notes: {newMember.Notes}\n" +
-                    "Confirm?";
-                var result = MessageBox.Show(message, "Create New User", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes) { Member.CreateMember(newMember); }
-            }
-        }
-
-        private void UpdateMemberPage(List<Member> members)
-        {
-            dataGridViewMembers.Rows.Clear();
-            List<Team> teams = Team.GetTeams();
-            foreach (Member m in members)
-            {
-                DataGridViewTextBoxCell id = new DataGridViewTextBoxCell() { Value = m.Id.ToString() };
-                DataGridViewTextBoxCell membername = new DataGridViewTextBoxCell() { Value = $"{m.Last_name}, {m.First_name}" };
-                DataGridViewTextBoxCell isPlayer = new DataGridViewTextBoxCell() { Value = m.IsPlayer };
-                DataGridViewTextBoxCell isReferee = new DataGridViewTextBoxCell() { Value = m.IsRef };
-                DataGridViewTextBoxCell isEligible = new DataGridViewTextBoxCell() { Value = m.EligibleDate.Date.ToShortDateString() };
-                DataGridViewTextBoxCell team = new DataGridViewTextBoxCell() { Value = Team.GetTeamNameById(m.TeamId) };
-                DataGridViewTextBoxCell email = new DataGridViewTextBoxCell() { Value = m.Email };
-                DataGridViewTextBoxCell notes = new DataGridViewTextBoxCell() { Value = m.Notes };
-
-                DataGridViewRow r = new DataGridViewRow();
-                r.Cells.AddRange(id, membername, isPlayer, isReferee, isEligible, team, email, notes);
-                dataGridViewMembers.Rows.Add(r);
-            }
-            if (login == null)
-            {
-                dataGridViewMembers.Columns["ColumnEmail"].Visible = false;
-            }
-            dataGridViewMembers.Columns["ColumnMemberId"].Visible = login?.IsAdmin ?? false;
-            dataGridViewMembers.Sort(dataGridViewMembers.Columns["ColumnName"], System.ComponentModel.ListSortDirection.Ascending);
-        }
-
-        #region CheckBoxes
-        private void radioButtonReferees_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonReferees.Checked)
-            {
-                UpdateMemberPage(Member.GetReferees());
-            }
-        }
-
-        private void radioButtonAllMembers_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonAllMembers.Checked)
-            {
-                UpdateMemberPage(Member.GetAllMembers());
-            }
-        }
-
-        private void radioButtonTeamManagers_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonTeamManagers.Checked)
-            {
-                List<Member> allManagers = new List<Member>();
-                foreach (Team t in Team.GetTeams())
-                {
-                    allManagers.Add(Member.GetMemberById(t.ManagerID));
-                }
-                UpdateMemberPage(allManagers);
-            }
-        }
-
-        private void radioButtonTeamCaptains_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonTeamCaptains.Checked)
-            {
-                List<Member> allCapitans = new List<Member>();
-                foreach (Team t in Team.GetTeams())
-                {
-                    allCapitans.Add(Member.GetMemberById(t.CaptainID));
-                }
-                UpdateMemberPage(allCapitans);
-            }
-        }
-
-        private void radioButtonFreeAgents_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonFreeAgents.Checked)
-            {
-                UpdateMemberPage(Member.GetFreeAgents());
-            }
-        }
-
-        private void radioButtonSuspendedPlayers_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButtonSuspendedPlayers.Checked)
-            {
-                DateTime today = DateTime.Now.Date;
-                int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
-                DateTime nextSunday = today.AddDays(daysUntilSunday).Date;
-                List<Member> suspended = Member.GetAllMembers().Where(s => s.EligibleDate > nextSunday).ToList();
-                UpdateMemberPage(suspended);
-            }
-        }
-
-        #endregion
-
-        private void dataGridViewMembers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DataGridViewMembers_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             int ColumnIdxPlayer = 2;
             int ColumnIdxRef = 3;
@@ -491,6 +373,163 @@ namespace SoccerPagesBTG
             e.CellStyle.ForeColor = foreColor;
         }
 
+        private static void AddUpdateMember(AddEditMember aem)
+        {
+            Member newMember = aem.newMember;
+            Member oldMember = aem.oldMember;
+
+            if (oldMember != null)
+            {
+                DisplayUpdateConfirmation(oldMember, newMember);
+            }
+            else
+            {
+                DisplayCreationConfirmation(newMember);
+            }
+        }
+
+        private static void DisplayUpdateConfirmation(Member oldMember, Member newMember)
+        {
+            string message = $"You have updated user:\n" +
+                $"First_Name: {oldMember.First_name} to {newMember.First_name}\n" +
+                $"Last_Name: {oldMember.Last_name} to {newMember.Last_name}\n" +
+                $"E-mail: {oldMember.Email} to {newMember.Email}\n" +
+                $"Team: {Team.GetTeamNameById(oldMember.TeamId)} to {Team.GetTeamNameById(newMember.TeamId)}\n" +
+                $"isPlayer: {oldMember.IsPlayer} to {newMember.IsPlayer}\n" +
+                $"isRef: {oldMember.IsRef} to {newMember.IsRef}\n" +
+                $"isAdmin: {oldMember.IsAdmin} to {newMember.IsAdmin}\n" +
+                $"isScheduler: {oldMember.IsScheduler} to {newMember.IsScheduler}\n" +
+                $"EligibleDate: {oldMember.EligibleDate.Date} to {newMember.EligibleDate.Date}\n" +
+                $"Notes: {oldMember.Notes} to {newMember.Notes}\n" +
+                "Confirm Changes?";
+
+            var result = MessageBox.Show(message, "Edit User", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Member.UpdateMember(newMember);
+            }
+        }
+
+        private static void DisplayCreationConfirmation(Member newMember)
+        {
+            string message = $"You have created a new user:\n" +
+                $"First_Name: {newMember.First_name}\n" +
+                $"Last_Name: {newMember.Last_name}\n" +
+                $"E-mail: {newMember.Email}\n" +
+                $"Team: {Team.GetTeamNameById(newMember.TeamId)}\n" +
+                $"isPlayer: {newMember.IsPlayer}\n" +
+                $"isRef: {newMember.IsRef}\n" +
+                $"isAdmin: {newMember.IsAdmin}\n" +
+                $"isScheduler: {newMember.IsScheduler}\n" +
+                $"EligibleDate: {newMember.EligibleDate.Date}\n" +
+                $"Notes: {newMember.Notes}\n" +
+                "Confirm?";
+
+            var result = MessageBox.Show(message, "Create New User", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Member.CreateMember(newMember);
+            }
+        }
+
+
+        private void UpdateMemberPage(List<Member> members)
+        {
+            dataGridViewMembers.Rows.Clear();
+            foreach (Member m in members)
+            {
+                DataGridViewTextBoxCell id = new DataGridViewTextBoxCell() { Value = m.Id.ToString() };
+                DataGridViewTextBoxCell membername = new DataGridViewTextBoxCell() { Value = $"{m.Last_name}, {m.First_name}" };
+                DataGridViewTextBoxCell isPlayer = new DataGridViewTextBoxCell() { Value = m.IsPlayer };
+                DataGridViewTextBoxCell isReferee = new DataGridViewTextBoxCell() { Value = m.IsRef };
+                DataGridViewTextBoxCell isEligible = new DataGridViewTextBoxCell() { Value = m.EligibleDate.Date.ToShortDateString() };
+                DataGridViewTextBoxCell team = new DataGridViewTextBoxCell() { Value = Team.GetTeamNameById(m.TeamId) };
+                DataGridViewTextBoxCell email = new DataGridViewTextBoxCell() { Value = m.Email };
+                DataGridViewTextBoxCell notes = new DataGridViewTextBoxCell() { Value = m.Notes };
+
+                DataGridViewRow r = new DataGridViewRow();
+                r.Cells.AddRange(id, membername, isPlayer, isReferee, isEligible, team, email, notes);
+                dataGridViewMembers.Rows.Add(r);
+            }
+            if (login == null)
+            {
+                dataGridViewMembers.Columns["ColumnEmail"].Visible = false;
+            }
+            dataGridViewMembers.Columns["ColumnMemberId"].Visible = login?.IsAdmin ?? false;
+            dataGridViewMembers.Sort(dataGridViewMembers.Columns["ColumnName"], System.ComponentModel.ListSortDirection.Ascending);
+        }
+
+        #region CheckBoxes
+        private async void RadioButtonReferees_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonReferees.Checked)
+            {
+                UpdateMemberPage(await Member.GetRefereesAsync());
+            }
+        }
+
+        private async void RadioButtonAllMembers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonAllMembers.Checked)
+            {
+                UpdateMemberPage(await Member.GetAllMembersAsync());
+            }
+        }
+
+        private void RadioButtonTeamManagers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonTeamManagers.Checked)
+            {
+                List<Member> allManagers = new List<Member>();
+                foreach (Team t in Team.GetTeams())
+                {
+                    allManagers.Add(Member.GetMemberById(t.ManagerID));
+                }
+                UpdateMemberPage(allManagers);
+            }
+        }
+
+        private void RadioButtonTeamCaptains_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonTeamCaptains.Checked)
+            {
+                List<Member> allCaptains = new List<Member>();
+                foreach (Team t in Team.GetTeams())
+                {
+                    allCaptains.Add(Member.GetMemberById(t.CaptainID));
+                }
+                UpdateMemberPage(allCaptains);
+            }
+        }
+
+        private async void RadioButtonFreeAgents_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonFreeAgents.Checked)
+            {
+                UpdateMemberPage(await Member.GetFreeAgentsAsync());
+            }
+        }
+
+        private async void RadioButtonSuspendedPlayers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonSuspendedPlayers.Checked)
+            {
+                DateTime today = DateTime.Now.Date;
+                int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
+                DateTime nextSunday = today.AddDays(daysUntilSunday).Date;
+                List<Member> suspended = await Member.GetAllMembersAsync();
+                suspended = suspended.Where(s => s.EligibleDate > nextSunday).ToList();
+                UpdateMemberPage(suspended);
+            }
+        }
+
+
+        #endregion
+
+
+
         #endregion
 
         #region TeamPage
@@ -499,7 +538,7 @@ namespace SoccerPagesBTG
             listBoxTeams.DataSource = Team.GetTeamNames();
         }
 
-        private void buttonAddTeam_Click(object sender, EventArgs e)
+        private void ButtonAddTeam_Click(object sender, EventArgs e)
         {
             using (AddEditTeam teamEditor = new AddEditTeam())
             {
@@ -515,10 +554,9 @@ namespace SoccerPagesBTG
             }
         }
 
-        private void buttonAddPlayer_Click(object sender, EventArgs e)
+        private void ButtonAddPlayer_Click(object sender, EventArgs e)
         {
-            string team = listBoxTeams.SelectedItem.ToString();
-            team = Team.GetIdByTeamName(team);
+            string team = Team.GetIdByTeamName(listBoxTeams.SelectedItem.ToString());
             using (AddToRoster atr = new AddToRoster(team))
             {
                 if (atr.ShowDialog() == DialogResult.OK)
@@ -528,16 +566,26 @@ namespace SoccerPagesBTG
                     Member.UpdateMember(m);
                 }
             }
-            List<string> roster = Team.GetRoster(team);
-            roster.Sort();
-            listBoxRoster.DataSource = roster;
+            UpdateRosterListBox(team);
         }
 
-        private void listBoxTeams_SelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateRosterListBox(string teamId)
         {
-            List<string> roster = Team.GetRoster(Team.GetIdByTeamName(listBoxTeams.SelectedItem.ToString()));
+            List<string> roster = Team.GetRoster(teamId);
             roster.Sort();
             listBoxRoster.DataSource = roster;
+            if (listBoxRoster.Items.Count > 0) { listBoxRoster.SelectedIndex = 0; }
+        }
+
+        private void ListBoxTeams_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            Team t = Team.GetTeambyName(listBoxTeams.SelectedItem.ToString());
+            Member mgr = Member.GetMemberById(t.ManagerID);
+            Member cpt = Member.GetMemberById(t.CaptainID);
+            buttonAddPlayer.Visible = buttonDropPlayer.Visible = login.IsAdmin || login.Id == mgr.Id || login.Id == cpt.Id;
+            buttonAssignCaptain.Visible = login.IsAdmin || login.Id == mgr.Id;
+            UpdateRosterListBox(t.Id.ToString());
         }
 
         #endregion
@@ -554,9 +602,61 @@ namespace SoccerPagesBTG
 
 
 
+
+
         #endregion
 
+        private void ListBoxRoster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] name = listBoxRoster.SelectedItem.ToString().Split(',');
+            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
+            labelRosterFname.Text = m.First_name;
+            labelRosterLname.Text = m.Last_name;
+            labelEligibleDate.Text = m.EligibleDate.Date.ToString();
+            DateTime today = DateTime.Now.Date;
+            int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
+            DateTime nextSunday = today.AddDays(daysUntilSunday);
+            if (today.DayOfWeek == DayOfWeek.Sunday) { nextSunday.AddDays(7); }
+            if (m.EligibleDate.Date > nextSunday) { labelEligibleDate.BackColor = Color.Red; }
+            else { labelEligibleDate.BackColor = Color.LightCyan; }
 
-       
+        }
+
+        private void ButtonAssignCaptain_Click(object sender, EventArgs e)
+        {
+            Team t = Team.GetTeambyName(listBoxTeams.Text);
+            string[] name = listBoxRoster.Text.Split(',');
+            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
+            string capConfirm = $"You are about to make {m.First_name} {m.Last_name}" +
+                      $"the captian of the {t.Name}.  Are you sure?";
+            var result = MessageBox.Show(capConfirm, "Captaincy Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                Member oldCaptain = Member.GetMemberById(t.CaptainID);
+                string note = oldCaptain.Notes;
+                oldCaptain.Notes = string.Empty;
+                Member.UpdateMember(oldCaptain);
+                m.Notes = note;
+                t.CaptainID = m.Id.ToString();
+                Member.UpdateMember(m);
+                UpdateRosterListBox(t.Id.ToString());
+            }
+        }
+
+        private void ButtonDropPlayer_Click(object sender, EventArgs e)
+        {
+            string team = listBoxTeams.Text;
+            string[] name = listBoxRoster.Text.Split(',');
+            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
+            string removeConfirm = $"You are about to remove {m.First_name} {m.Last_name}" +
+                                  $"from the {team} roster.  Are you sure?";
+            var result=MessageBox.Show(removeConfirm, "Remove Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if(result==DialogResult.Yes)
+            {
+                m.TeamId = string.Empty;
+                Member.UpdateMember(m);
+                UpdateRosterListBox(Team.GetIdByTeamName(team));
+            }
+        }
     }
 }

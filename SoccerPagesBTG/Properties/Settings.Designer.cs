@@ -25,7 +25,7 @@ namespace SoccerPagesBTG.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/?retryWrites=true&w=majority")]
         public string mongoDbConnect {
             get {
                 return ((string)(this["mongoDbConnect"]));

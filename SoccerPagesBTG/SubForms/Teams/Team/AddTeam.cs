@@ -28,13 +28,16 @@ namespace SoccerPagesBTG
             GetAllMemberList();
         }
 
+ 
+
         private void GetAllMemberList()
         {
             MongoClient client = new MongoClient(conn_str);
             var db = client.GetDatabase(db_str);
             var collection = db.GetCollection<Member>("Members");
 
-            var filter = Builders<Member>.Filter.Eq("TeamId", "") & Builders<Member>.Filter.Eq("IsPlayer", true);
+            var filter = Builders<Member>.Filter.Eq("TeamId", "");
+
             var membersWithNullTeam = collection.Find(filter).ToList();
 
             List<string> potentialMgrs = new List<string>();
@@ -42,7 +45,7 @@ namespace SoccerPagesBTG
             {
                 potentialMgrs.Add((d.Last_name + ", " + d.First_name));
             }
-            comboBox1.DataSource = potentialMgrs;
+            comboBoxManager.DataSource = potentialMgrs;
         }
     }
 }

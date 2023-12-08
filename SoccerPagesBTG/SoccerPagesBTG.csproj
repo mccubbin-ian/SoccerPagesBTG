@@ -173,11 +173,11 @@
     <Compile Include="SubForms\Member\AddEditMember.Designer.cs">
       <DependentUpon>AddEditMember.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\Teams\AddEditTeam.cs">
+    <Compile Include="SubForms\Teams\Team\AddTeam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\Teams\AddEditTeam.Designer.cs">
-      <DependentUpon>AddEditTeam.cs</DependentUpon>
+    <Compile Include="SubForms\Teams\Team\AddTeam.Designer.cs">
+      <DependentUpon>AddTeam.cs</DependentUpon>
     </Compile>
     <Compile Include="SubForms\Game\AddGame.cs">
       <SubType>Form</SubType>
@@ -215,8 +215,8 @@
     <EmbeddedResource Include="SubForms\Member\AddEditMember.resx">
       <DependentUpon>AddEditMember.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\Teams\AddEditTeam.resx">
-      <DependentUpon>AddEditTeam.cs</DependentUpon>
+    <EmbeddedResource Include="SubForms\Teams\Team\AddTeam.resx">
+      <DependentUpon>AddTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubForms\Game\AddGame.resx">
       <DependentUpon>AddGame.cs</DependentUpon>
@@ -261,7 +261,9 @@
   <ItemGroup>
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SubForms\Teams\Roster\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.8.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.8.0\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

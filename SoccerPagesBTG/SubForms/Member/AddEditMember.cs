@@ -20,10 +20,10 @@ namespace SoccerPagesBTG
         public AddEditMember(Member accessingMember, Member m=null)
         {
             InitializeComponent();
-            configureUserEntries(accessingMember, m);
+            ConfigureUserEntries(accessingMember, m);
         }
 
-        private void configureUserEntries(Member accessing, Member m=null)
+        private void ConfigureUserEntries(Member accessing, Member m = null)
         {
             List<string> teams = Team.GetTeamNames();
             teams.Add("None");
@@ -56,10 +56,10 @@ namespace SoccerPagesBTG
             dateTimePicker1.Enabled = comboBoxTeam.Enabled = tableLayoutPanelTFPlayer.Enabled
                 = tableLayoutPanelTFRef.Enabled = tableLayoutPanelScheduler.Enabled = tableLayoutPanelAdmin.Enabled
                 = textBoxNotes.Enabled = true;
-            setNewMember();
+            SetNewMember();
         }
 
-        private void setNewMember()
+        private void SetNewMember()
         {
             newMember = new Member()
             {

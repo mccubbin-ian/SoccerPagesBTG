@@ -16,9 +16,9 @@ namespace SoccerPagesBTG
     public partial class AddGame : Form
     {
         public Game g;
-        public List<string> TeamList = Team.GetTeamNames();
-        public List<string> RefereeList = Member.GetReferees().Select(r => $"{r.Last_name}, {r.First_name}").ToList();
-        public List<string> Fields = Field.GetAllFields().Select(f=> f.Name).ToList();
+        public List<string> TeamList;
+        public List<string> RefereeList;
+        public List<string> Fields;
         public DateTime t = DateTime.Now.Date;
         public string home, away, ref1, ref2, ref3, field;
 
@@ -26,10 +26,18 @@ namespace SoccerPagesBTG
         public AddGame()
         {
             InitializeComponent();
+            InitializeAsync();
+        }
+
+        private async void InitializeAsync()
+        {
             DateTime d = DateTime.Now.Date;
             int dayOffset = ((int)DayOfWeek.Sunday - (int)d.DayOfWeek + 7) % 7;
             comboBoxLocation.Items.Clear();
-            dateTimePicker1.Value= d.AddDays(dayOffset);
+            dateTimePicker1.Value = d.AddDays(dayOffset);
+
+            await LoadDataAsync();
+
             comboBoxLocation.Items.AddRange(Fields.ToArray());
             comboBoxAway.Items.AddRange(TeamList.ToArray());
             comboBoxHome.Items.AddRange(TeamList.ToArray());
@@ -37,7 +45,16 @@ namespace SoccerPagesBTG
             comboBoxRef2.Items.AddRange(RefereeList.ToArray());
             comboBoxRef3.Items.AddRange(RefereeList.ToArray());
         }
-        private void ComboBoxRefs_SelectedIndexChanged(object sender, EventArgs e, ComboBox currentComboBox, ComboBox otherComboBox1, ComboBox otherComboBox2)
+
+        private async Task LoadDataAsync()
+        {
+            TeamList = await Task.Run(() => Team.GetTeamNames());
+            var referees = await Member.GetRefereesAsync();
+            RefereeList = referees.Select(r => $"{r.Last_name}, {r.First_name}").ToList();
+            Fields = (await Task.Run(() => Field.GetAllFields())).Select(f => f.Name).ToList();
+        }
+
+        private void ComboBoxRefs_SelectedIndexChanged(ComboBox currentComboBox, ComboBox otherComboBox1, ComboBox otherComboBox2)
         {
             if (currentComboBox.SelectedItem != null)
             {
@@ -63,17 +80,17 @@ namespace SoccerPagesBTG
 
         private void ComboBoxRef1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxRefs_SelectedIndexChanged(sender, e, comboBoxRef1, comboBoxRef2, comboBoxRef3);
+            ComboBoxRefs_SelectedIndexChanged(comboBoxRef1, comboBoxRef2, comboBoxRef3);
         }
 
         private void ComboBoxRef2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxRefs_SelectedIndexChanged(sender, e, comboBoxRef2, comboBoxRef1, comboBoxRef3);
+            ComboBoxRefs_SelectedIndexChanged(comboBoxRef2, comboBoxRef1, comboBoxRef3);
         }
 
         private void ComboBoxRef3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxRefs_SelectedIndexChanged(sender, e, comboBoxRef3, comboBoxRef1, comboBoxRef2);
+            ComboBoxRefs_SelectedIndexChanged(comboBoxRef3, comboBoxRef1, comboBoxRef2);
         }
 
         private void ButtonNextWeek_Click(object sender, EventArgs e)
@@ -91,7 +108,7 @@ namespace SoccerPagesBTG
             
         }
 
-        private void ComboBoxTeams_SelectedIndexChanged(object sender, EventArgs e, ComboBox currentComboBox, ComboBox otherComboBox)
+        private void ComboBoxTeams_SelectedIndexChanged(ComboBox currentComboBox, ComboBox otherComboBox)
         {
             if (currentComboBox.SelectedItem != null)
             {
@@ -105,12 +122,12 @@ namespace SoccerPagesBTG
 
         private void ComboBoxHome_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxTeams_SelectedIndexChanged(sender, e, comboBoxHome, comboBoxAway);
+            ComboBoxTeams_SelectedIndexChanged(comboBoxHome, comboBoxAway);
         }
 
         private void ComboBoxAway_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxTeams_SelectedIndexChanged(sender, e, comboBoxAway, comboBoxHome);
+            ComboBoxTeams_SelectedIndexChanged(comboBoxAway, comboBoxHome);
         }
 
         private void ButtonOKCommit_Click(object sender, EventArgs e)

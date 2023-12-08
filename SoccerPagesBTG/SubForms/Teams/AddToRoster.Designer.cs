@@ -51,7 +51,7 @@ namespace SoccerPagesBTG
             this.buttonAddPlayer.TabIndex = 1;
             this.buttonAddPlayer.Text = "Add Player";
             this.buttonAddPlayer.UseVisualStyleBackColor = true;
-            this.buttonAddPlayer.Click += new System.EventHandler(this.buttonAddPlayer_Click);
+            this.buttonAddPlayer.Click += new System.EventHandler(this.ButtonAddPlayer_Click);
             // 
             // buttonCancel
             // 

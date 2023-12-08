@@ -29,17 +29,20 @@ namespace SoccerPagesBTG
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainerHome = new System.Windows.Forms.SplitContainer();
             this.labelWelcome = new System.Windows.Forms.Label();
             this.tabControlMain = new System.Windows.Forms.TabControl();
@@ -61,6 +64,13 @@ namespace SoccerPagesBTG
             this.buttonAddGame = new System.Windows.Forms.Button();
             this.buttonReportScore = new System.Windows.Forms.Button();
             this.dataGridViewMatches = new System.Windows.Forms.DataGridView();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHomeScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAway = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAwayScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageFields = new System.Windows.Forms.TabPage();
             this.splitContainerFields = new System.Windows.Forms.SplitContainer();
             this.buttonRemoveField = new System.Windows.Forms.Button();
@@ -86,6 +96,7 @@ namespace SoccerPagesBTG
             this.buttonAddTeam = new System.Windows.Forms.Button();
             this.listBoxTeams = new System.Windows.Forms.ListBox();
             this.splitContainerPlayerInfo = new System.Windows.Forms.SplitContainer();
+            this.buttonAssignCaptain = new System.Windows.Forms.Button();
             this.buttonDropPlayer = new System.Windows.Forms.Button();
             this.buttonAddPlayer = new System.Windows.Forms.Button();
             this.listBoxRoster = new System.Windows.Forms.ListBox();
@@ -95,9 +106,18 @@ namespace SoccerPagesBTG
             this.labelRosterLname = new System.Windows.Forms.Label();
             this.labelRosterFname = new System.Windows.Forms.Label();
             this.labelPlayerFirst = new System.Windows.Forms.Label();
+            this.labelEligibleDate = new System.Windows.Forms.Label();
             this.tabPageMembers = new System.Windows.Forms.TabPage();
             this.splitContainerMember = new System.Windows.Forms.SplitContainer();
             this.dataGridViewMembers = new System.Windows.Forms.DataGridView();
+            this.buttonRemoveMember = new System.Windows.Forms.Button();
+            this.radioButtonSuspendedPlayers = new System.Windows.Forms.RadioButton();
+            this.radioButtonFreeAgents = new System.Windows.Forms.RadioButton();
+            this.radioButtonTeamCaptains = new System.Windows.Forms.RadioButton();
+            this.radioButtonTeamManagers = new System.Windows.Forms.RadioButton();
+            this.radioButtonReferees = new System.Windows.Forms.RadioButton();
+            this.radioButtonAllMembers = new System.Windows.Forms.RadioButton();
+            this.buttonAddMember = new System.Windows.Forms.Button();
             this.ColumnMemberId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,21 +126,7 @@ namespace SoccerPagesBTG
             this.ColumnMemberTeam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.radioButtonSuspendedPlayers = new System.Windows.Forms.RadioButton();
-            this.radioButtonFreeAgents = new System.Windows.Forms.RadioButton();
-            this.radioButtonTeamCaptains = new System.Windows.Forms.RadioButton();
-            this.radioButtonTeamManagers = new System.Windows.Forms.RadioButton();
-            this.radioButtonReferees = new System.Windows.Forms.RadioButton();
-            this.radioButtonAllMembers = new System.Windows.Forms.RadioButton();
-            this.buttonAddMember = new System.Windows.Forms.Button();
-            this.buttonRemoveMember = new System.Windows.Forms.Button();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnHome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnHomeScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAway = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAwayScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLocation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelManagerControls = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHome)).BeginInit();
             this.splitContainerHome.Panel1.SuspendLayout();
             this.splitContainerHome.Panel2.SuspendLayout();
@@ -154,6 +160,7 @@ namespace SoccerPagesBTG
             this.splitContainerMember.Panel2.SuspendLayout();
             this.splitContainerMember.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembers)).BeginInit();
+            this.panelManagerControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerHome
@@ -204,6 +211,7 @@ namespace SoccerPagesBTG
             // 
             // tabPageHome
             // 
+            this.tabPageHome.BackColor = System.Drawing.Color.SkyBlue;
             this.tabPageHome.Controls.Add(this.tableLayoutPanelHome);
             this.tabPageHome.Location = new System.Drawing.Point(4, 25);
             this.tabPageHome.Name = "tabPageHome";
@@ -211,7 +219,6 @@ namespace SoccerPagesBTG
             this.tabPageHome.Size = new System.Drawing.Size(993, 433);
             this.tabPageHome.TabIndex = 0;
             this.tabPageHome.Text = "Home";
-            this.tabPageHome.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelHome
             // 
@@ -269,14 +276,14 @@ namespace SoccerPagesBTG
             this.dataGridViewStandings.AllowUserToAddRows = false;
             this.dataGridViewStandings.AllowUserToDeleteRows = false;
             this.dataGridViewStandings.AllowUserToResizeColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewStandings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewStandings.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewStandings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStandings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTeam,
@@ -284,27 +291,27 @@ namespace SoccerPagesBTG
             this.ColumnLoss,
             this.ColumnDraw,
             this.ColumnPoints});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewStandings.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewStandings.DefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridViewStandings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewStandings.Location = new System.Drawing.Point(3, 23);
             this.dataGridViewStandings.MultiSelect = false;
             this.dataGridViewStandings.Name = "dataGridViewStandings";
             this.dataGridViewStandings.ReadOnly = true;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewStandings.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewStandings.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridViewStandings.RowHeadersVisible = false;
             this.dataGridViewStandings.Size = new System.Drawing.Size(981, 170);
             this.dataGridViewStandings.TabIndex = 1;
@@ -312,40 +319,40 @@ namespace SoccerPagesBTG
             // ColumnTeam
             // 
             this.ColumnTeam.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnTeam.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnTeam.DefaultCellStyle = dataGridViewCellStyle16;
             this.ColumnTeam.HeaderText = "Team";
             this.ColumnTeam.Name = "ColumnTeam";
             this.ColumnTeam.ReadOnly = true;
             // 
             // ColumnWins
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnWins.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnWins.DefaultCellStyle = dataGridViewCellStyle17;
             this.ColumnWins.HeaderText = "W";
             this.ColumnWins.Name = "ColumnWins";
             this.ColumnWins.ReadOnly = true;
             // 
             // ColumnLoss
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnLoss.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnLoss.DefaultCellStyle = dataGridViewCellStyle18;
             this.ColumnLoss.HeaderText = "L";
             this.ColumnLoss.Name = "ColumnLoss";
             this.ColumnLoss.ReadOnly = true;
             // 
             // ColumnDraw
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnDraw.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnDraw.DefaultCellStyle = dataGridViewCellStyle19;
             this.ColumnDraw.HeaderText = "D";
             this.ColumnDraw.Name = "ColumnDraw";
             this.ColumnDraw.ReadOnly = true;
             // 
             // ColumnPoints
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.ColumnPoints.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnPoints.DefaultCellStyle = dataGridViewCellStyle20;
             this.ColumnPoints.HeaderText = "Pts";
             this.ColumnPoints.Name = "ColumnPoints";
             this.ColumnPoints.ReadOnly = true;
@@ -356,9 +363,9 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelMatchDate.ColumnCount = 5;
             this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.37288F));
             this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.62712F));
-            this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
             this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 84F));
-            this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 312F));
+            this.tableLayoutPanelMatchDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 534F));
             this.tableLayoutPanelMatchDate.Controls.Add(this.buttonPrevWeekGames, 1, 0);
             this.tableLayoutPanelMatchDate.Controls.Add(this.buttonNextWeekGames, 2, 0);
             this.tableLayoutPanelMatchDate.Controls.Add(this.panelStandingsMain, 0, 0);
@@ -378,32 +385,32 @@ namespace SoccerPagesBTG
             this.buttonPrevWeekGames.BackColor = System.Drawing.Color.Silver;
             this.buttonPrevWeekGames.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonPrevWeekGames.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonPrevWeekGames.Location = new System.Drawing.Point(314, 3);
+            this.buttonPrevWeekGames.Location = new System.Drawing.Point(177, 3);
             this.buttonPrevWeekGames.Name = "buttonPrevWeekGames";
-            this.buttonPrevWeekGames.Size = new System.Drawing.Size(182, 23);
+            this.buttonPrevWeekGames.Size = new System.Drawing.Size(99, 23);
             this.buttonPrevWeekGames.TabIndex = 0;
             this.buttonPrevWeekGames.Text = "Previous Week";
             this.buttonPrevWeekGames.UseVisualStyleBackColor = false;
-            this.buttonPrevWeekGames.Click += new System.EventHandler(this.buttonPrevWeekGames_Click);
+            this.buttonPrevWeekGames.Click += new System.EventHandler(this.ButtonPrevWeekGames_Click);
             // 
             // buttonNextWeekGames
             // 
             this.buttonNextWeekGames.BackColor = System.Drawing.Color.Silver;
             this.buttonNextWeekGames.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonNextWeekGames.Location = new System.Drawing.Point(502, 3);
+            this.buttonNextWeekGames.Location = new System.Drawing.Point(282, 3);
             this.buttonNextWeekGames.Name = "buttonNextWeekGames";
             this.buttonNextWeekGames.Size = new System.Drawing.Size(75, 23);
             this.buttonNextWeekGames.TabIndex = 1;
             this.buttonNextWeekGames.Text = "Next Week";
             this.buttonNextWeekGames.UseVisualStyleBackColor = false;
-            this.buttonNextWeekGames.Click += new System.EventHandler(this.buttonNextWeekGames_Click);
+            this.buttonNextWeekGames.Click += new System.EventHandler(this.ButtonNextWeekGames_Click);
             // 
             // panelStandingsMain
             // 
             this.panelStandingsMain.Controls.Add(this.dateTimePickerUpcomingGames);
             this.panelStandingsMain.Location = new System.Drawing.Point(3, 3);
             this.panelStandingsMain.Name = "panelStandingsMain";
-            this.panelStandingsMain.Size = new System.Drawing.Size(170, 23);
+            this.panelStandingsMain.Size = new System.Drawing.Size(168, 23);
             this.panelStandingsMain.TabIndex = 3;
             // 
             // dateTimePickerUpcomingGames
@@ -417,18 +424,18 @@ namespace SoccerPagesBTG
             // buttonAddGame
             // 
             this.buttonAddGame.BackColor = System.Drawing.Color.DarkGray;
-            this.buttonAddGame.Location = new System.Drawing.Point(587, 3);
+            this.buttonAddGame.Location = new System.Drawing.Point(365, 3);
             this.buttonAddGame.Name = "buttonAddGame";
             this.buttonAddGame.Size = new System.Drawing.Size(75, 23);
             this.buttonAddGame.TabIndex = 3;
             this.buttonAddGame.Text = "Add Game...";
             this.buttonAddGame.UseVisualStyleBackColor = false;
-            this.buttonAddGame.Click += new System.EventHandler(this.buttonAddGame_Click);
+            this.buttonAddGame.Click += new System.EventHandler(this.ButtonAddGame_Click);
             // 
             // buttonReportScore
             // 
             this.buttonReportScore.BackColor = System.Drawing.Color.DarkGray;
-            this.buttonReportScore.Location = new System.Drawing.Point(671, 3);
+            this.buttonReportScore.Location = new System.Drawing.Point(449, 3);
             this.buttonReportScore.Name = "buttonReportScore";
             this.buttonReportScore.Size = new System.Drawing.Size(94, 23);
             this.buttonReportScore.TabIndex = 4;
@@ -442,14 +449,14 @@ namespace SoccerPagesBTG
             this.dataGridViewMatches.AllowUserToResizeColumns = false;
             this.dataGridViewMatches.AllowUserToResizeRows = false;
             this.dataGridViewMatches.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewMatches.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridViewMatches.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewMatches.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
@@ -459,32 +466,87 @@ namespace SoccerPagesBTG
             this.ColumnAwayScore,
             this.ColumnLocation,
             this.ColumnTime});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewMatches.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewMatches.DefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridViewMatches.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewMatches.Location = new System.Drawing.Point(3, 254);
             this.dataGridViewMatches.Name = "dataGridViewMatches";
             this.dataGridViewMatches.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewMatches.RowHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dataGridViewMatches.RowHeadersVisible = false;
             this.dataGridViewMatches.ShowEditingIcon = false;
             this.dataGridViewMatches.ShowRowErrors = false;
             this.dataGridViewMatches.Size = new System.Drawing.Size(981, 170);
             this.dataGridViewMatches.TabIndex = 4;
-            this.dataGridViewMatches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMatches_CellDoubleClick);
+            this.dataGridViewMatches.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewMatches_CellDoubleClick);
+            // 
+            // ColumnId
+            // 
+            this.ColumnId.HeaderText = "ID";
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.ReadOnly = true;
+            this.ColumnId.Visible = false;
+            // 
+            // ColumnHome
+            // 
+            this.ColumnHome.FillWeight = 121.7448F;
+            this.ColumnHome.HeaderText = "Home";
+            this.ColumnHome.Name = "ColumnHome";
+            this.ColumnHome.ReadOnly = true;
+            // 
+            // ColumnHomeScore
+            // 
+            this.ColumnHomeScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnHomeScore.HeaderText = "";
+            this.ColumnHomeScore.MinimumWidth = 40;
+            this.ColumnHomeScore.Name = "ColumnHomeScore";
+            this.ColumnHomeScore.ReadOnly = true;
+            this.ColumnHomeScore.Width = 40;
+            // 
+            // ColumnAway
+            // 
+            this.ColumnAway.FillWeight = 121.7448F;
+            this.ColumnAway.HeaderText = "Away";
+            this.ColumnAway.Name = "ColumnAway";
+            this.ColumnAway.ReadOnly = true;
+            // 
+            // ColumnAwayScore
+            // 
+            this.ColumnAwayScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnAwayScore.FillWeight = 13.02083F;
+            this.ColumnAwayScore.HeaderText = "";
+            this.ColumnAwayScore.MinimumWidth = 40;
+            this.ColumnAwayScore.Name = "ColumnAwayScore";
+            this.ColumnAwayScore.ReadOnly = true;
+            this.ColumnAwayScore.Width = 40;
+            // 
+            // ColumnLocation
+            // 
+            this.ColumnLocation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnLocation.FillWeight = 121.7448F;
+            this.ColumnLocation.HeaderText = "Location";
+            this.ColumnLocation.Name = "ColumnLocation";
+            this.ColumnLocation.ReadOnly = true;
+            // 
+            // ColumnTime
+            // 
+            this.ColumnTime.FillWeight = 121.7448F;
+            this.ColumnTime.HeaderText = "Time";
+            this.ColumnTime.Name = "ColumnTime";
+            this.ColumnTime.ReadOnly = true;
             // 
             // tabPageFields
             // 
@@ -511,6 +573,7 @@ namespace SoccerPagesBTG
             // 
             // splitContainerFields.Panel2
             // 
+            this.splitContainerFields.Panel2.BackColor = System.Drawing.Color.LightCyan;
             this.splitContainerFields.Panel2.Controls.Add(this.tableLayoutPanelFieldInfo);
             this.splitContainerFields.Size = new System.Drawing.Size(987, 427);
             this.splitContainerFields.SplitterDistance = 255;
@@ -533,7 +596,7 @@ namespace SoccerPagesBTG
             this.buttonAddField.TabIndex = 1;
             this.buttonAddField.Text = "Add Field";
             this.buttonAddField.UseVisualStyleBackColor = true;
-            this.buttonAddField.Click += new System.EventHandler(this.buttonAddField_Click);
+            this.buttonAddField.Click += new System.EventHandler(this.ButtonAddField_Click);
             // 
             // listBoxFields
             // 
@@ -543,8 +606,8 @@ namespace SoccerPagesBTG
             this.listBoxFields.Name = "listBoxFields";
             this.listBoxFields.Size = new System.Drawing.Size(255, 238);
             this.listBoxFields.TabIndex = 0;
-            this.listBoxFields.SelectedIndexChanged += new System.EventHandler(this.listBoxFields_SelectedIndexChanged);
-            this.listBoxFields.DoubleClick += new System.EventHandler(this.listBoxFields_DoubleClick);
+            this.listBoxFields.SelectedIndexChanged += new System.EventHandler(this.ListBoxFields_SelectedIndexChanged);
+            this.listBoxFields.DoubleClick += new System.EventHandler(this.ListBoxFields_DoubleClick);
             // 
             // tableLayoutPanelFieldInfo
             // 
@@ -732,16 +795,17 @@ namespace SoccerPagesBTG
             // 
             // tabPageTeams
             // 
+            this.tabPageTeams.BackColor = System.Drawing.Color.LightCyan;
             this.tabPageTeams.Controls.Add(this.splitContainerTeamsMain);
             this.tabPageTeams.Location = new System.Drawing.Point(4, 25);
             this.tabPageTeams.Name = "tabPageTeams";
             this.tabPageTeams.Size = new System.Drawing.Size(993, 433);
             this.tabPageTeams.TabIndex = 2;
             this.tabPageTeams.Text = "Teams";
-            this.tabPageTeams.UseVisualStyleBackColor = true;
             // 
             // splitContainerTeamsMain
             // 
+            this.splitContainerTeamsMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainerTeamsMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerTeamsMain.Location = new System.Drawing.Point(0, 0);
             this.splitContainerTeamsMain.Name = "splitContainerTeamsMain";
@@ -760,13 +824,14 @@ namespace SoccerPagesBTG
             // 
             // buttonAddTeam
             // 
-            this.buttonAddTeam.Location = new System.Drawing.Point(52, 307);
+            this.buttonAddTeam.BackColor = System.Drawing.Color.Silver;
+            this.buttonAddTeam.Location = new System.Drawing.Point(74, 296);
             this.buttonAddTeam.Name = "buttonAddTeam";
             this.buttonAddTeam.Size = new System.Drawing.Size(75, 23);
             this.buttonAddTeam.TabIndex = 1;
             this.buttonAddTeam.Text = "AddTeam";
-            this.buttonAddTeam.UseVisualStyleBackColor = true;
-            this.buttonAddTeam.Click += new System.EventHandler(this.buttonAddTeam_Click);
+            this.buttonAddTeam.UseVisualStyleBackColor = false;
+            this.buttonAddTeam.Click += new System.EventHandler(this.ButtonAddTeam_Click);
             // 
             // listBoxTeams
             // 
@@ -774,20 +839,20 @@ namespace SoccerPagesBTG
             this.listBoxTeams.FormattingEnabled = true;
             this.listBoxTeams.Location = new System.Drawing.Point(0, 0);
             this.listBoxTeams.Name = "listBoxTeams";
-            this.listBoxTeams.Size = new System.Drawing.Size(224, 290);
+            this.listBoxTeams.Size = new System.Drawing.Size(222, 290);
             this.listBoxTeams.TabIndex = 0;
-            this.listBoxTeams.SelectedIndexChanged += new System.EventHandler(this.listBoxTeams_SelectedIndexChanged);
+            this.listBoxTeams.SelectedIndexChanged += new System.EventHandler(this.ListBoxTeams_SelectedIndexChanged);
             // 
             // splitContainerPlayerInfo
             // 
+            this.splitContainerPlayerInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainerPlayerInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerPlayerInfo.Location = new System.Drawing.Point(0, 0);
             this.splitContainerPlayerInfo.Name = "splitContainerPlayerInfo";
             // 
             // splitContainerPlayerInfo.Panel1
             // 
-            this.splitContainerPlayerInfo.Panel1.Controls.Add(this.buttonDropPlayer);
-            this.splitContainerPlayerInfo.Panel1.Controls.Add(this.buttonAddPlayer);
+            this.splitContainerPlayerInfo.Panel1.Controls.Add(this.panelManagerControls);
             this.splitContainerPlayerInfo.Panel1.Controls.Add(this.listBoxRoster);
             // 
             // splitContainerPlayerInfo.Panel2
@@ -797,24 +862,38 @@ namespace SoccerPagesBTG
             this.splitContainerPlayerInfo.SplitterDistance = 289;
             this.splitContainerPlayerInfo.TabIndex = 0;
             // 
+            // buttonAssignCaptain
+            // 
+            this.buttonAssignCaptain.BackColor = System.Drawing.Color.Silver;
+            this.buttonAssignCaptain.Location = new System.Drawing.Point(0, 46);
+            this.buttonAssignCaptain.Name = "buttonAssignCaptain";
+            this.buttonAssignCaptain.Size = new System.Drawing.Size(123, 23);
+            this.buttonAssignCaptain.TabIndex = 4;
+            this.buttonAssignCaptain.Text = "Assign Captain";
+            this.buttonAssignCaptain.UseVisualStyleBackColor = false;
+            this.buttonAssignCaptain.Click += new System.EventHandler(this.ButtonAssignCaptain_Click);
+            // 
             // buttonDropPlayer
             // 
-            this.buttonDropPlayer.Location = new System.Drawing.Point(51, 324);
+            this.buttonDropPlayer.BackColor = System.Drawing.Color.Silver;
+            this.buttonDropPlayer.Location = new System.Drawing.Point(0, 23);
             this.buttonDropPlayer.Name = "buttonDropPlayer";
             this.buttonDropPlayer.Size = new System.Drawing.Size(123, 23);
             this.buttonDropPlayer.TabIndex = 3;
             this.buttonDropPlayer.Text = "Drop Selected Player";
-            this.buttonDropPlayer.UseVisualStyleBackColor = true;
+            this.buttonDropPlayer.UseVisualStyleBackColor = false;
+            this.buttonDropPlayer.Click += new System.EventHandler(this.ButtonDropPlayer_Click);
             // 
             // buttonAddPlayer
             // 
-            this.buttonAddPlayer.Location = new System.Drawing.Point(51, 296);
+            this.buttonAddPlayer.BackColor = System.Drawing.Color.Silver;
+            this.buttonAddPlayer.Location = new System.Drawing.Point(0, 0);
             this.buttonAddPlayer.Name = "buttonAddPlayer";
             this.buttonAddPlayer.Size = new System.Drawing.Size(123, 23);
             this.buttonAddPlayer.TabIndex = 2;
             this.buttonAddPlayer.Text = "Add Player to Roster";
-            this.buttonAddPlayer.UseVisualStyleBackColor = true;
-            this.buttonAddPlayer.Click += new System.EventHandler(this.buttonAddPlayer_Click);
+            this.buttonAddPlayer.UseVisualStyleBackColor = false;
+            this.buttonAddPlayer.Click += new System.EventHandler(this.ButtonAddPlayer_Click);
             // 
             // listBoxRoster
             // 
@@ -822,8 +901,9 @@ namespace SoccerPagesBTG
             this.listBoxRoster.FormattingEnabled = true;
             this.listBoxRoster.Location = new System.Drawing.Point(0, 0);
             this.listBoxRoster.Name = "listBoxRoster";
-            this.listBoxRoster.Size = new System.Drawing.Size(289, 290);
+            this.listBoxRoster.Size = new System.Drawing.Size(287, 290);
             this.listBoxRoster.TabIndex = 0;
+            this.listBoxRoster.SelectedIndexChanged += new System.EventHandler(this.ListBoxRoster_SelectedIndexChanged);
             // 
             // tableLayoutPanelRosterStatus
             // 
@@ -836,6 +916,7 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelRosterStatus.Controls.Add(this.labelRosterLname, 1, 1);
             this.tableLayoutPanelRosterStatus.Controls.Add(this.labelRosterFname, 1, 0);
             this.tableLayoutPanelRosterStatus.Controls.Add(this.labelPlayerFirst, 0, 0);
+            this.tableLayoutPanelRosterStatus.Controls.Add(this.labelEligibleDate, 1, 2);
             this.tableLayoutPanelRosterStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanelRosterStatus.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelRosterStatus.Name = "tableLayoutPanelRosterStatus";
@@ -844,7 +925,7 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelRosterStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanelRosterStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanelRosterStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelRosterStatus.Size = new System.Drawing.Size(472, 105);
+            this.tableLayoutPanelRosterStatus.Size = new System.Drawing.Size(470, 105);
             this.tableLayoutPanelRosterStatus.TabIndex = 2;
             // 
             // labelPlayerEligible
@@ -875,7 +956,7 @@ namespace SoccerPagesBTG
             this.labelRosterLname.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelRosterLname.Location = new System.Drawing.Point(117, 38);
             this.labelRosterLname.Name = "labelRosterLname";
-            this.labelRosterLname.Size = new System.Drawing.Size(351, 35);
+            this.labelRosterLname.Size = new System.Drawing.Size(349, 35);
             this.labelRosterLname.TabIndex = 4;
             this.labelRosterLname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -885,7 +966,7 @@ namespace SoccerPagesBTG
             this.labelRosterFname.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelRosterFname.Location = new System.Drawing.Point(117, 1);
             this.labelRosterFname.Name = "labelRosterFname";
-            this.labelRosterFname.Size = new System.Drawing.Size(351, 36);
+            this.labelRosterFname.Size = new System.Drawing.Size(349, 36);
             this.labelRosterFname.TabIndex = 3;
             this.labelRosterFname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -900,6 +981,16 @@ namespace SoccerPagesBTG
             this.labelPlayerFirst.Text = "First Name";
             this.labelPlayerFirst.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // labelEligibleDate
+            // 
+            this.labelEligibleDate.AutoSize = true;
+            this.labelEligibleDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelEligibleDate.Location = new System.Drawing.Point(117, 74);
+            this.labelEligibleDate.Name = "labelEligibleDate";
+            this.labelEligibleDate.Size = new System.Drawing.Size(349, 30);
+            this.labelEligibleDate.TabIndex = 7;
+            this.labelEligibleDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabPageMembers
             // 
             this.tabPageMembers.Controls.Add(this.splitContainerMember);
@@ -913,6 +1004,7 @@ namespace SoccerPagesBTG
             // 
             // splitContainerMember
             // 
+            this.splitContainerMember.BackColor = System.Drawing.Color.LightSteelBlue;
             this.splitContainerMember.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMember.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainerMember.Location = new System.Drawing.Point(3, 3);
@@ -963,8 +1055,95 @@ namespace SoccerPagesBTG
             this.dataGridViewMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewMembers.Size = new System.Drawing.Size(987, 353);
             this.dataGridViewMembers.TabIndex = 1;
-            this.dataGridViewMembers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMembers_CellDoubleClick);
-            this.dataGridViewMembers.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMembers_CellFormatting);
+            this.dataGridViewMembers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewMembers_CellDoubleClick);
+            this.dataGridViewMembers.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridViewMembers_CellFormatting);
+            // 
+            // buttonRemoveMember
+            // 
+            this.buttonRemoveMember.Location = new System.Drawing.Point(24, 37);
+            this.buttonRemoveMember.Name = "buttonRemoveMember";
+            this.buttonRemoveMember.Size = new System.Drawing.Size(113, 23);
+            this.buttonRemoveMember.TabIndex = 7;
+            this.buttonRemoveMember.Text = "Remove Member...";
+            this.buttonRemoveMember.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonSuspendedPlayers
+            // 
+            this.radioButtonSuspendedPlayers.AutoSize = true;
+            this.radioButtonSuspendedPlayers.Location = new System.Drawing.Point(550, 48);
+            this.radioButtonSuspendedPlayers.Name = "radioButtonSuspendedPlayers";
+            this.radioButtonSuspendedPlayers.Size = new System.Drawing.Size(113, 17);
+            this.radioButtonSuspendedPlayers.TabIndex = 6;
+            this.radioButtonSuspendedPlayers.Text = "SuspendedPlayers";
+            this.radioButtonSuspendedPlayers.UseVisualStyleBackColor = true;
+            this.radioButtonSuspendedPlayers.CheckedChanged += new System.EventHandler(this.RadioButtonSuspendedPlayers_CheckedChanged);
+            // 
+            // radioButtonFreeAgents
+            // 
+            this.radioButtonFreeAgents.AutoSize = true;
+            this.radioButtonFreeAgents.Location = new System.Drawing.Point(550, 28);
+            this.radioButtonFreeAgents.Name = "radioButtonFreeAgents";
+            this.radioButtonFreeAgents.Size = new System.Drawing.Size(79, 17);
+            this.radioButtonFreeAgents.TabIndex = 5;
+            this.radioButtonFreeAgents.Text = "FreeAgents";
+            this.radioButtonFreeAgents.UseVisualStyleBackColor = true;
+            this.radioButtonFreeAgents.CheckedChanged += new System.EventHandler(this.RadioButtonFreeAgents_CheckedChanged);
+            // 
+            // radioButtonTeamCaptains
+            // 
+            this.radioButtonTeamCaptains.AutoSize = true;
+            this.radioButtonTeamCaptains.Location = new System.Drawing.Point(550, 8);
+            this.radioButtonTeamCaptains.Name = "radioButtonTeamCaptains";
+            this.radioButtonTeamCaptains.Size = new System.Drawing.Size(66, 17);
+            this.radioButtonTeamCaptains.TabIndex = 4;
+            this.radioButtonTeamCaptains.Text = "Captians";
+            this.radioButtonTeamCaptains.UseVisualStyleBackColor = true;
+            this.radioButtonTeamCaptains.CheckedChanged += new System.EventHandler(this.RadioButtonTeamCaptains_CheckedChanged);
+            // 
+            // radioButtonTeamManagers
+            // 
+            this.radioButtonTeamManagers.AutoSize = true;
+            this.radioButtonTeamManagers.Location = new System.Drawing.Point(435, 48);
+            this.radioButtonTeamManagers.Name = "radioButtonTeamManagers";
+            this.radioButtonTeamManagers.Size = new System.Drawing.Size(72, 17);
+            this.radioButtonTeamManagers.TabIndex = 3;
+            this.radioButtonTeamManagers.Text = "Managers";
+            this.radioButtonTeamManagers.UseVisualStyleBackColor = true;
+            this.radioButtonTeamManagers.CheckedChanged += new System.EventHandler(this.RadioButtonTeamManagers_CheckedChanged);
+            // 
+            // radioButtonReferees
+            // 
+            this.radioButtonReferees.AutoSize = true;
+            this.radioButtonReferees.Location = new System.Drawing.Point(435, 28);
+            this.radioButtonReferees.Name = "radioButtonReferees";
+            this.radioButtonReferees.Size = new System.Drawing.Size(68, 17);
+            this.radioButtonReferees.TabIndex = 2;
+            this.radioButtonReferees.Text = "Referees";
+            this.radioButtonReferees.UseVisualStyleBackColor = true;
+            this.radioButtonReferees.CheckedChanged += new System.EventHandler(this.RadioButtonReferees_CheckedChanged);
+            // 
+            // radioButtonAllMembers
+            // 
+            this.radioButtonAllMembers.AutoSize = true;
+            this.radioButtonAllMembers.Checked = true;
+            this.radioButtonAllMembers.Location = new System.Drawing.Point(435, 8);
+            this.radioButtonAllMembers.Name = "radioButtonAllMembers";
+            this.radioButtonAllMembers.Size = new System.Drawing.Size(63, 17);
+            this.radioButtonAllMembers.TabIndex = 1;
+            this.radioButtonAllMembers.TabStop = true;
+            this.radioButtonAllMembers.Text = "ShowAll";
+            this.radioButtonAllMembers.UseVisualStyleBackColor = true;
+            this.radioButtonAllMembers.CheckedChanged += new System.EventHandler(this.RadioButtonAllMembers_CheckedChanged);
+            // 
+            // buttonAddMember
+            // 
+            this.buttonAddMember.Location = new System.Drawing.Point(24, 8);
+            this.buttonAddMember.Name = "buttonAddMember";
+            this.buttonAddMember.Size = new System.Drawing.Size(113, 23);
+            this.buttonAddMember.TabIndex = 0;
+            this.buttonAddMember.Text = "Add Member...";
+            this.buttonAddMember.UseVisualStyleBackColor = true;
+            this.buttonAddMember.Click += new System.EventHandler(this.ButtonAddMember_Click);
             // 
             // ColumnMemberId
             // 
@@ -984,6 +1163,8 @@ namespace SoccerPagesBTG
             // 
             // ColumnPlayer
             // 
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnPlayer.DefaultCellStyle = dataGridViewCellStyle26;
             this.ColumnPlayer.HeaderText = "IsPlayer";
             this.ColumnPlayer.MaxInputLength = 1;
             this.ColumnPlayer.Name = "ColumnPlayer";
@@ -993,6 +1174,8 @@ namespace SoccerPagesBTG
             // 
             // ColumnReferee
             // 
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnReferee.DefaultCellStyle = dataGridViewCellStyle27;
             this.ColumnReferee.HeaderText = "IsReferee";
             this.ColumnReferee.MaxInputLength = 1;
             this.ColumnReferee.Name = "ColumnReferee";
@@ -1002,12 +1185,14 @@ namespace SoccerPagesBTG
             // 
             // ColumnEligible
             // 
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.ColumnEligible.DefaultCellStyle = dataGridViewCellStyle28;
             this.ColumnEligible.HeaderText = "IsEligible";
             this.ColumnEligible.MaxInputLength = 1;
             this.ColumnEligible.Name = "ColumnEligible";
             this.ColumnEligible.ReadOnly = true;
             this.ColumnEligible.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnEligible.Width = 60;
+            this.ColumnEligible.Width = 80;
             // 
             // ColumnMemberTeam
             // 
@@ -1030,147 +1215,15 @@ namespace SoccerPagesBTG
             this.ColumnNotes.Name = "ColumnNotes";
             this.ColumnNotes.ReadOnly = true;
             // 
-            // radioButtonSuspendedPlayers
+            // panelManagerControls
             // 
-            this.radioButtonSuspendedPlayers.AutoSize = true;
-            this.radioButtonSuspendedPlayers.Location = new System.Drawing.Point(550, 48);
-            this.radioButtonSuspendedPlayers.Name = "radioButtonSuspendedPlayers";
-            this.radioButtonSuspendedPlayers.Size = new System.Drawing.Size(113, 17);
-            this.radioButtonSuspendedPlayers.TabIndex = 6;
-            this.radioButtonSuspendedPlayers.Text = "SuspendedPlayers";
-            this.radioButtonSuspendedPlayers.UseVisualStyleBackColor = true;
-            this.radioButtonSuspendedPlayers.CheckedChanged += new System.EventHandler(this.radioButtonSuspendedPlayers_CheckedChanged);
-            // 
-            // radioButtonFreeAgents
-            // 
-            this.radioButtonFreeAgents.AutoSize = true;
-            this.radioButtonFreeAgents.Location = new System.Drawing.Point(550, 28);
-            this.radioButtonFreeAgents.Name = "radioButtonFreeAgents";
-            this.radioButtonFreeAgents.Size = new System.Drawing.Size(79, 17);
-            this.radioButtonFreeAgents.TabIndex = 5;
-            this.radioButtonFreeAgents.Text = "FreeAgents";
-            this.radioButtonFreeAgents.UseVisualStyleBackColor = true;
-            this.radioButtonFreeAgents.CheckedChanged += new System.EventHandler(this.radioButtonFreeAgents_CheckedChanged);
-            // 
-            // radioButtonTeamCaptains
-            // 
-            this.radioButtonTeamCaptains.AutoSize = true;
-            this.radioButtonTeamCaptains.Location = new System.Drawing.Point(550, 8);
-            this.radioButtonTeamCaptains.Name = "radioButtonTeamCaptains";
-            this.radioButtonTeamCaptains.Size = new System.Drawing.Size(66, 17);
-            this.radioButtonTeamCaptains.TabIndex = 4;
-            this.radioButtonTeamCaptains.Text = "Captians";
-            this.radioButtonTeamCaptains.UseVisualStyleBackColor = true;
-            this.radioButtonTeamCaptains.CheckedChanged += new System.EventHandler(this.radioButtonTeamCaptains_CheckedChanged);
-            // 
-            // radioButtonTeamManagers
-            // 
-            this.radioButtonTeamManagers.AutoSize = true;
-            this.radioButtonTeamManagers.Location = new System.Drawing.Point(435, 48);
-            this.radioButtonTeamManagers.Name = "radioButtonTeamManagers";
-            this.radioButtonTeamManagers.Size = new System.Drawing.Size(72, 17);
-            this.radioButtonTeamManagers.TabIndex = 3;
-            this.radioButtonTeamManagers.Text = "Managers";
-            this.radioButtonTeamManagers.UseVisualStyleBackColor = true;
-            this.radioButtonTeamManagers.CheckedChanged += new System.EventHandler(this.radioButtonTeamManagers_CheckedChanged);
-            // 
-            // radioButtonReferees
-            // 
-            this.radioButtonReferees.AutoSize = true;
-            this.radioButtonReferees.Location = new System.Drawing.Point(435, 28);
-            this.radioButtonReferees.Name = "radioButtonReferees";
-            this.radioButtonReferees.Size = new System.Drawing.Size(68, 17);
-            this.radioButtonReferees.TabIndex = 2;
-            this.radioButtonReferees.Text = "Referees";
-            this.radioButtonReferees.UseVisualStyleBackColor = true;
-            this.radioButtonReferees.CheckedChanged += new System.EventHandler(this.radioButtonReferees_CheckedChanged);
-            // 
-            // radioButtonAllMembers
-            // 
-            this.radioButtonAllMembers.AutoSize = true;
-            this.radioButtonAllMembers.Checked = true;
-            this.radioButtonAllMembers.Location = new System.Drawing.Point(435, 8);
-            this.radioButtonAllMembers.Name = "radioButtonAllMembers";
-            this.radioButtonAllMembers.Size = new System.Drawing.Size(63, 17);
-            this.radioButtonAllMembers.TabIndex = 1;
-            this.radioButtonAllMembers.TabStop = true;
-            this.radioButtonAllMembers.Text = "ShowAll";
-            this.radioButtonAllMembers.UseVisualStyleBackColor = true;
-            this.radioButtonAllMembers.CheckedChanged += new System.EventHandler(this.radioButtonAllMembers_CheckedChanged);
-            // 
-            // buttonAddMember
-            // 
-            this.buttonAddMember.Location = new System.Drawing.Point(24, 8);
-            this.buttonAddMember.Name = "buttonAddMember";
-            this.buttonAddMember.Size = new System.Drawing.Size(113, 23);
-            this.buttonAddMember.TabIndex = 0;
-            this.buttonAddMember.Text = "Add Member...";
-            this.buttonAddMember.UseVisualStyleBackColor = true;
-            this.buttonAddMember.Click += new System.EventHandler(this.buttonAddMember_Click);
-            // 
-            // buttonRemoveMember
-            // 
-            this.buttonRemoveMember.Location = new System.Drawing.Point(24, 37);
-            this.buttonRemoveMember.Name = "buttonRemoveMember";
-            this.buttonRemoveMember.Size = new System.Drawing.Size(113, 23);
-            this.buttonRemoveMember.TabIndex = 7;
-            this.buttonRemoveMember.Text = "Remove Member...";
-            this.buttonRemoveMember.UseVisualStyleBackColor = true;
-            // 
-            // ColumnId
-            // 
-            this.ColumnId.HeaderText = "ID";
-            this.ColumnId.Name = "ColumnId";
-            this.ColumnId.ReadOnly = true;
-            this.ColumnId.Visible = false;
-            // 
-            // ColumnHome
-            // 
-            this.ColumnHome.FillWeight = 121.7448F;
-            this.ColumnHome.HeaderText = "Home";
-            this.ColumnHome.Name = "ColumnHome";
-            this.ColumnHome.ReadOnly = true;
-            // 
-            // ColumnHomeScore
-            // 
-            this.ColumnHomeScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnHomeScore.HeaderText = "";
-            this.ColumnHomeScore.MinimumWidth = 40;
-            this.ColumnHomeScore.Name = "ColumnHomeScore";
-            this.ColumnHomeScore.ReadOnly = true;
-            this.ColumnHomeScore.Width = 40;
-            // 
-            // ColumnAway
-            // 
-            this.ColumnAway.FillWeight = 121.7448F;
-            this.ColumnAway.HeaderText = "Away";
-            this.ColumnAway.Name = "ColumnAway";
-            this.ColumnAway.ReadOnly = true;
-            // 
-            // ColumnAwayScore
-            // 
-            this.ColumnAwayScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ColumnAwayScore.FillWeight = 13.02083F;
-            this.ColumnAwayScore.HeaderText = "";
-            this.ColumnAwayScore.MinimumWidth = 40;
-            this.ColumnAwayScore.Name = "ColumnAwayScore";
-            this.ColumnAwayScore.ReadOnly = true;
-            this.ColumnAwayScore.Width = 40;
-            // 
-            // ColumnLocation
-            // 
-            this.ColumnLocation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnLocation.FillWeight = 121.7448F;
-            this.ColumnLocation.HeaderText = "Location";
-            this.ColumnLocation.Name = "ColumnLocation";
-            this.ColumnLocation.ReadOnly = true;
-            // 
-            // ColumnTime
-            // 
-            this.ColumnTime.FillWeight = 121.7448F;
-            this.ColumnTime.HeaderText = "Time";
-            this.ColumnTime.Name = "ColumnTime";
-            this.ColumnTime.ReadOnly = true;
+            this.panelManagerControls.Controls.Add(this.buttonAssignCaptain);
+            this.panelManagerControls.Controls.Add(this.buttonDropPlayer);
+            this.panelManagerControls.Controls.Add(this.buttonAddPlayer);
+            this.panelManagerControls.Location = new System.Drawing.Point(82, 296);
+            this.panelManagerControls.Name = "panelManagerControls";
+            this.panelManagerControls.Size = new System.Drawing.Size(123, 70);
+            this.panelManagerControls.TabIndex = 5;
             // 
             // FormBTG
             // 
@@ -1222,6 +1275,7 @@ namespace SoccerPagesBTG
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMember)).EndInit();
             this.splitContainerMember.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMembers)).EndInit();
+            this.panelManagerControls.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1287,14 +1341,6 @@ namespace SoccerPagesBTG
         private System.Windows.Forms.SplitContainer splitContainerMember;
         private System.Windows.Forms.DataGridView dataGridViewMembers;
         private System.Windows.Forms.Button buttonAddMember;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMemberId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPlayer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReferee;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEligible;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMemberTeam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmail;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNotes;
         private System.Windows.Forms.RadioButton radioButtonFreeAgents;
         private System.Windows.Forms.RadioButton radioButtonTeamCaptains;
         private System.Windows.Forms.RadioButton radioButtonTeamManagers;
@@ -1309,6 +1355,17 @@ namespace SoccerPagesBTG
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAwayScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLocation;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTime;
+        private System.Windows.Forms.Label labelEligibleDate;
+        private System.Windows.Forms.Button buttonAssignCaptain;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMemberId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnReferee;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEligible;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMemberTeam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNotes;
+        private System.Windows.Forms.Panel panelManagerControls;
     }
 }
 

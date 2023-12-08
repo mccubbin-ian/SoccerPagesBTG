@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-using System;
-using System.Linq;
-
 
 namespace SoccerPagesBTG.DBClasses
 {
@@ -48,109 +47,155 @@ namespace SoccerPagesBTG.DBClasses
 
         public Member() { }
 
-
-
         internal static string GetIdByName(string fname, string lname)
         {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
 
-            var filter = Builders<Member>.Filter.Eq("First_name", fname) & Builders<Member>.Filter.Eq("Last_name", lname);
+            try
+            {
+                var client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
 
-            var member = collection.Find(filter).FirstOrDefault();
-            return member != null ? member.Id.ToString() : string.Empty;
+                var filter = Builders<Member>.Filter.Eq("First_name", fname) & Builders<Member>.Filter.Eq("Last_name", lname);
+
+                var member = collection.Find(filter).FirstOrDefault();
+                return member?.Id.ToString() ?? string.Empty;
+            }
+            finally
+            {
+            }
         }
 
         internal static string[] GetNameById(string Id)
         {
-            string[] name = new string[2];
+            try
+            {
+                var client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
 
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
+                ObjectId memberId = new ObjectId(Id);
 
-            ObjectId memberId = new ObjectId(Id);
-
-            var filter = Builders<Member>.Filter.Eq("_id", memberId);
-            var member = collection.Find(filter).FirstOrDefault();
-
-            name[0] = member.First_name;
-            name[1] = member.Last_name;
-            return name;
+                var filter = Builders<Member>.Filter.Eq("_id", memberId);
+                var member = collection.Find(filter).FirstOrDefault();
+                string[] name = new string[2];
+                name[0] = member.First_name;
+                name[1] = member.Last_name;
+                return name;
+            }
+            finally
+            {}
         }
 
         public static void CreateMember(Member m)
         {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
 
-            collection.InsertOne(m);
+            try
+            {
+                var client  = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+
+                collection.InsertOne(m);
+            }
+            finally
+            {}
         }
 
         public static void UpdateMember(Member updatedMember)
         {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
 
-            var filter = Builders<Member>.Filter.Eq(s => s.Id, updatedMember.Id);
-            var result = collection.ReplaceOne(filter, updatedMember);
+            try
+            {
+                var client  = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+
+                var filter = Builders<Member>.Filter.Eq(s => s.Id, updatedMember.Id);
+                var result = collection.ReplaceOne(filter, updatedMember);
+            }
+            finally
+            {}
         }
 
         public static Member GetMemberById(string id)
         {
             if (string.IsNullOrEmpty(id)) { return null; }
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
+
 
             try
             {
-                var filter = Builders<Member>.Filter.Eq("_id", ObjectId.Parse(id));
-                return collection.Find(filter).FirstOrDefault();
+                var client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+
+                try
+                {
+                    var filter = Builders<Member>.Filter.Eq("_id", ObjectId.Parse(id));
+                    return collection.Find(filter).FirstOrDefault();
+                }
+                catch (FormatException)
+                {
+                    return null;
+                }
             }
-            catch (FormatException)
+            catch (Exception ex)
             {
-                // Handle the case where id is not a valid ObjectId
+                // Handle any exceptions that might occur during database access
+                Console.WriteLine($"Error in GetMemberById: {ex.Message}");
                 return null;
             }
+            finally
+            { }
         }
 
-        public static List<Member> GetAllMembers()
+        public static async Task<List<Member>> GetAllMembersAsync()
         {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
+            MongoClient client = null;
 
-            List<Member> members = collection.Find(_ => true).ToList();
-            return members;
+            try
+            {
+                client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+
+                return await collection.Find(_ => true).ToListAsync();
+            }
+            finally
+            {}
         }
 
-        public static List<Member> GetReferees()
+        public static async Task<List<Member>> GetRefereesAsync()
         {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
 
-            var filter = Builders<Member>.Filter.Eq("IsRef", true);
-            var referees = collection.Find(filter).ToList();
-            return referees;
+            try
+            {
+                var client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+
+                var filter = Builders<Member>.Filter.Eq("IsRef", true);
+                return await collection.Find(filter).ToListAsync();
+            }
+            finally
+            {}
         }
 
-        public static List<Member> GetFreeAgents()
+        public static async Task<List<Member>> GetFreeAgentsAsync()
         {
-            MongoClient client = new MongoClient(conn_str);
-            var db = client.GetDatabase(db_str);
-            var collection = db.GetCollection<Member>("Members");
+            MongoClient client = null;
 
-            // Define a filter to find players without a team
-            var filter = Builders<Member>.Filter.Where(member => member.IsPlayer && string.IsNullOrEmpty(member.TeamId));
+            try
+            {
+                client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
 
-            // Execute the query
-            return collection.Find(filter).ToList();
+                var filter = Builders<Member>.Filter.Where(member => member.IsPlayer && string.IsNullOrEmpty(member.TeamId));
+                return await collection.Find(filter).ToListAsync();
+            }
+            finally
+            {}
         }
-
     }
 }
