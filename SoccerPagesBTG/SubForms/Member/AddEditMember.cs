@@ -41,13 +41,12 @@ namespace SoccerPagesBTG
                 radioButtonRefTrue.Checked = m.IsRef;
                 radioButtonSchedulerTrue.Checked = m.IsScheduler;
                 radioButtonAdminTrue.Checked = m.IsAdmin;
-                textBoxNotes.Text = m.Notes;
             }
             if (!accessing.IsAdmin)
             {
                 dateTimePicker1.Enabled = comboBoxTeam.Enabled = tableLayoutPanelTFPlayer.Enabled
                     = tableLayoutPanelTFRef.Enabled = tableLayoutPanelScheduler.Enabled = tableLayoutPanelAdmin.Enabled
-                    = textBoxNotes.Enabled = false;
+                    = false;
             }
         }
 
@@ -55,7 +54,7 @@ namespace SoccerPagesBTG
         {
             dateTimePicker1.Enabled = comboBoxTeam.Enabled = tableLayoutPanelTFPlayer.Enabled
                 = tableLayoutPanelTFRef.Enabled = tableLayoutPanelScheduler.Enabled = tableLayoutPanelAdmin.Enabled
-                = textBoxNotes.Enabled = true;
+                = true;
             SetNewMember();
         }
 
@@ -72,7 +71,6 @@ namespace SoccerPagesBTG
                 IsRef = radioButtonRefTrue.Checked,
                 IsScheduler = radioButtonSchedulerTrue.Checked,
                 EligibleDate = dateTimePicker1.Value.Date,
-                Notes = textBoxNotes.Text
             };
             if (oldMember != null) { newMember.Id = oldMember.Id; }          
         }

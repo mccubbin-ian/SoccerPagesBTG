@@ -42,9 +42,6 @@ namespace SoccerPagesBTG.DBClasses
         [BsonElement("email")]
         public string Email { get; set; }
 
-        [BsonElement("notes")]
-        public string Notes { get; set; }
-
         public Member() { }
 
         internal static string GetIdByName(string fname, string lname)
@@ -167,7 +164,6 @@ namespace SoccerPagesBTG.DBClasses
 
         public static async Task<List<Member>> GetRefereesAsync()
         {
-
             try
             {
                 var client = new MongoClient(conn_str);
@@ -183,11 +179,9 @@ namespace SoccerPagesBTG.DBClasses
 
         public static async Task<List<Member>> GetFreeAgentsAsync()
         {
-            MongoClient client = null;
-
             try
             {
-                client = new MongoClient(conn_str);
+                var client = new MongoClient(conn_str);
                 var db = client.GetDatabase(db_str);
                 var collection = db.GetCollection<Member>("Members");
 
@@ -196,6 +190,33 @@ namespace SoccerPagesBTG.DBClasses
             }
             finally
             {}
+        }
+
+        public static async Task<List<Member>> GetAllNoTeamAssociation()
+        {
+            try
+            {
+                var client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+
+                var filter = Builders<Member>.Filter.Where(member => string.IsNullOrEmpty(member.TeamId));
+                return await collection.Find(filter).ToListAsync();
+            }
+            finally
+            { }
+        }
+
+        public static void DeleteMember(Member m)
+        {
+            try
+            {
+                var client = new MongoClient(conn_str);
+                var db = client.GetDatabase(db_str);
+                var collection = db.GetCollection<Member>("Members");
+                var filter = Builders<Member>.Filter.Eq(s => s.Id, m.Id);
+                collection.DeleteOne(filter);
+            }finally { }
         }
     }
 }

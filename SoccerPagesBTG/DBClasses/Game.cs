@@ -61,6 +61,30 @@ namespace SoccerPagesBTG.DBClasses
             collection.InsertOne(g);
         }
 
+        public static void UpdateDBRecord(Game g)
+        {
+            MongoClient client = new MongoClient(conn_str);
+            var db = client.GetDatabase(db_str);
+            var collection = db.GetCollection<Game>("Games");
+
+            var filter = Builders<Game>.Filter.Eq(s => s.Id, g.Id);
+            var result = collection.ReplaceOne(filter, g);
+            return;
+        }
+
+        public static Game GetGameById(string id)
+        {
+            MongoClient client = new MongoClient(conn_str);
+            var db = client.GetDatabase(db_str);
+            var collection = db.GetCollection<Game>("Games");
+
+            ObjectId gameId = new ObjectId(id);
+
+            var filter = Builders<Game>.Filter.Eq("_id", gameId);
+            var game = collection.Find(filter).FirstOrDefault();
+            if(game != null) { return game; } else { return null; }
+        }
+
         public static List<Game> GetAllGames()
         {
             MongoClient client = new MongoClient(conn_str);

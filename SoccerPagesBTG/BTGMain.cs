@@ -51,74 +51,55 @@ namespace SoccerPagesBTG
 
         private void EstablishUserAccess(Member login)
         {
+            buttonAddField.Enabled =
+            buttonAddField.Visible =
+            buttonAddGame.Enabled =
+            buttonRemoveField.Enabled =
+            buttonRemoveField.Visible = 
+            buttonAddMember.Enabled =
+            buttonAddMember.Visible =
+            buttonRemoveMember.Enabled =
+            buttonRemoveMember.Visible =
+            buttonAddPlayer.Enabled =
+            buttonAddTeam.Enabled =
+            buttonAddTeam.Visible =
+            buttonDropPlayer.Enabled =
+            buttonReportScore.Enabled = false;
+
             if (login == null)
             {
-                buttonAddField.Enabled =
-                buttonAddGame.Enabled =
-                buttonRemoveField.Enabled =
-                buttonAddMember.Enabled =
-                buttonRemoveMember.Enabled =
-                buttonAddPlayer.Enabled =
-                buttonAddTeam.Enabled =
-                buttonDropPlayer.Enabled =
-                buttonReportScore.Enabled = false;
                 return;
             }
-            if(login.IsAdmin)
+
+            if (login.IsAdmin)
             {
-                buttonAddField.Enabled = 
-                buttonAddGame.Enabled = 
-                buttonAddMember.Enabled = 
-                buttonRemoveMember.Enabled = 
-                buttonAddPlayer.Enabled = 
-                buttonAddTeam.Enabled = 
-                buttonDropPlayer.Enabled = 
-                buttonRemoveField.Enabled = 
+                buttonAddField.Enabled =
+                buttonAddField.Visible =
+                buttonAddGame.Enabled =
+                buttonAddMember.Enabled =
+                buttonAddMember.Visible =
+                buttonRemoveMember.Enabled =
+                buttonRemoveMember.Visible =
+                buttonAddPlayer.Enabled =
+                buttonAddTeam.Enabled =
+                buttonAddTeam.Visible =
+                buttonDropPlayer.Enabled =
+                buttonRemoveField.Enabled =
+                buttonRemoveField.Visible =
                 buttonReportScore.Enabled = true;
-                return;
             }
             else if (login.IsScheduler)
             {
                 buttonAddField.Enabled =
+                buttonAddField.Visible =
+                buttonRemoveField.Visible =
                 buttonAddGame.Enabled =
                 buttonRemoveField.Enabled = true;
-
-                buttonAddMember.Enabled = 
-                buttonRemoveMember.Enabled = 
-                buttonAddPlayer.Enabled = 
-                buttonAddTeam.Enabled = 
-                buttonDropPlayer.Enabled = 
-                buttonReportScore.Enabled = false;
-                return;
             }
             else if (login.IsRef)
             {
-                buttonAddField.Enabled = 
-                buttonAddGame.Enabled = 
-                buttonRemoveField.Enabled = 
-                buttonAddMember.Enabled = 
-                buttonRemoveMember.Enabled = 
-                buttonAddPlayer.Enabled = 
-                buttonAddTeam.Enabled = 
-                buttonDropPlayer.Enabled = false;
-
                 buttonReportScore.Enabled = true;
-                return;
             }
-            else if (login.IsPlayer)
-            {
-                buttonAddField.Enabled = 
-                buttonAddGame.Enabled = 
-                buttonRemoveField.Enabled = 
-                buttonAddMember.Enabled = 
-                buttonRemoveMember.Enabled =
-                buttonAddPlayer.Enabled = 
-                buttonAddTeam.Enabled = 
-                buttonDropPlayer.Enabled = 
-                buttonReportScore.Enabled = false;
-                return;
-            }
-
         }
 
         static async void RunMailStop()
@@ -222,9 +203,37 @@ namespace SoccerPagesBTG
             UpdateMatchBoard();
         }
 
+        private void ButtonReportScore_Click(object sender, EventArgs e)
+        {
+            if(dateTimePickerUpcomingGames.Value<DateTime.Now)
+            {
+                string gameId = dataGridViewMatches.SelectedRows[0].Cells["ColumnId"].Value.ToString();
+                UpdateMatch(gameId);
+            }
+
+        }
+
         private void DataGridViewMatches_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(dateTimePickerUpcomingGames.Value<DateTime.Now)
+            {
+                string gameId = dataGridViewMatches.Rows[e.RowIndex].Cells["ColumnId"].Value.ToString();
+                UpdateMatch(gameId);
+            }
 
+        }
+
+        private void UpdateMatch(string gameId)
+        {
+            using (ScoreReport sr = new ScoreReport(Game.GetGameById(gameId)))
+            {
+                if (sr.ShowDialog() == DialogResult.OK)
+                {
+                    Game g = sr.game;
+                    Game.UpdateDBRecord(g);
+                    UpdateMatchPage();
+                }
+            }
         }
         #endregion
 
@@ -291,6 +300,46 @@ namespace SoccerPagesBTG
             }
 
             UpdateMemberPage(await Member.GetAllMembersAsync());
+        }
+
+        private void ButtonRemoveMember_Click(object sender, EventArgs e)
+        {
+            string id = dataGridViewMembers.SelectedRows[0].Cells["ColumnMemberId"].Value.ToString();
+            Member m = Member.GetMemberById(id);
+            string message;
+            if (m.TeamId != string.Empty)
+            {
+                Team t = Team.GetTeambyId(m.TeamId);
+                if (t.ManagerID == m.Id.ToString())
+                {
+                    message = "Error with Removal:\n" +
+                        $"{m.Last_name}, {m.First_name}\n" +
+                        $"is {t.Name} Manager.\n" +
+                        "Reassign Manager before deleting.";
+                    MessageBox.Show(message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (t.CaptainID == m.Id.ToString())
+                {
+                    message = "Error with Removal:\n" +
+                              $"{m.Last_name}, {m.First_name}\n" +
+                              $"is {t.Name} Captain.\n" +
+                              "Reassign Captain before deleting.";
+                    MessageBox.Show(message, "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    message = "You are about to delete:\n" +
+                              $"{m.Last_name}, {m.First_name} from the record.\n" +
+                              "Are you sure?";
+                    var result = MessageBox.Show(message, "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        Member.DeleteMember(m);
+                    }
+
+                }
+            }
+
         }
 
         private async Task AddUpdateMemberAsync(AddEditMember aem)
@@ -400,7 +449,6 @@ namespace SoccerPagesBTG
                 $"isAdmin: {oldMember.IsAdmin} to {newMember.IsAdmin}\n" +
                 $"isScheduler: {oldMember.IsScheduler} to {newMember.IsScheduler}\n" +
                 $"EligibleDate: {oldMember.EligibleDate.Date} to {newMember.EligibleDate.Date}\n" +
-                $"Notes: {oldMember.Notes} to {newMember.Notes}\n" +
                 "Confirm Changes?";
 
             var result = MessageBox.Show(message, "Edit User", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -423,7 +471,6 @@ namespace SoccerPagesBTG
                 $"isAdmin: {newMember.IsAdmin}\n" +
                 $"isScheduler: {newMember.IsScheduler}\n" +
                 $"EligibleDate: {newMember.EligibleDate.Date}\n" +
-                $"Notes: {newMember.Notes}\n" +
                 "Confirm?";
 
             var result = MessageBox.Show(message, "Create New User", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -447,10 +494,9 @@ namespace SoccerPagesBTG
                 DataGridViewTextBoxCell isEligible = new DataGridViewTextBoxCell() { Value = m.EligibleDate.Date.ToShortDateString() };
                 DataGridViewTextBoxCell team = new DataGridViewTextBoxCell() { Value = Team.GetTeamNameById(m.TeamId) };
                 DataGridViewTextBoxCell email = new DataGridViewTextBoxCell() { Value = m.Email };
-                DataGridViewTextBoxCell notes = new DataGridViewTextBoxCell() { Value = m.Notes };
 
                 DataGridViewRow r = new DataGridViewRow();
-                r.Cells.AddRange(id, membername, isPlayer, isReferee, isEligible, team, email, notes);
+                r.Cells.AddRange(id, membername, isPlayer, isReferee, isEligible, team, email);
                 dataGridViewMembers.Rows.Add(r);
             }
             if (login == null)
@@ -525,10 +571,7 @@ namespace SoccerPagesBTG
             }
         }
 
-
         #endregion
-
-
 
         #endregion
 
@@ -536,20 +579,22 @@ namespace SoccerPagesBTG
         private void UpdateTeamPage()
         {
             listBoxTeams.DataSource = Team.GetTeamNames();
+            if(listBoxTeams.Items.Count>0) { listBoxTeams.SelectedIndex = 0; }
         }
 
         private void ButtonAddTeam_Click(object sender, EventArgs e)
         {
-            using (AddEditTeam teamEditor = new AddEditTeam())
+            using (AddTeam teamEditor = new AddTeam())
             {
                 if (teamEditor.ShowDialog() == DialogResult.OK)
                 {
                     Team t = new Team()
                     {
                         Name = teamEditor.name,
-                        ManagerID = teamEditor.manager
+                        ManagerID = teamEditor.mgrId
                     };
                     Team.CreateTeam(t);
+                    UpdateTeamPage();
                 }
             }
         }
@@ -569,6 +614,92 @@ namespace SoccerPagesBTG
             UpdateRosterListBox(team);
         }
 
+        private void ButtonAssignCaptain_Click(object sender, EventArgs e)
+        {
+            Team t = Team.GetTeambyName(listBoxTeams.Text);
+            string[] name = listBoxRoster.Text.Split(',');
+            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
+            string capConfirm = $"You are about to make {m.First_name} {m.Last_name}" +
+                      $"the captian of the {t.Name}.  Are you sure?";
+            var result = MessageBox.Show(capConfirm, "Captain Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                Member oldCaptain = Member.GetMemberById(t.CaptainID);
+                Member.UpdateMember(oldCaptain);
+                t.CaptainID = m.Id.ToString();
+                Member.UpdateMember(m);
+                UpdateRosterListBox(t.Id.ToString());
+                radioButtonAllMembers.Checked = false;
+                radioButtonAllMembers.Checked = true;
+            }
+        }
+
+        private void ButtonDropPlayer_Click(object sender, EventArgs e)
+        {
+            string team = listBoxTeams.Text;
+            string[] name = listBoxRoster.Text.Split(',');
+            Team t = Team.GetTeambyName(team);
+            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
+            if(t.CaptainID == m.Id.ToString())
+            {
+                MessageBox.Show($"{m.Last_name}, {m.First_name} is team captain, reassign Captain before dropping.", 
+                    "Error Dropping Team Captain", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            } else
+            {
+                string removeConfirm = $"You are about to remove {m.First_name} {m.Last_name}" +
+                      $"from the {team} roster.  Are you sure?";
+                var result = MessageBox.Show(removeConfirm, "Remove Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    m.TeamId = string.Empty;
+                    Member.UpdateMember(m);
+                    UpdateRosterListBox(Team.GetIdByTeamName(team));
+                    radioButtonAllMembers.Checked = false;
+                    radioButtonAllMembers.Checked = true;
+                }
+            }
+        }
+
+        private void ListBoxTeams_DoubleClick(object sender, EventArgs e)
+        {
+            if (login == null) { return; }
+            Team oldTeam = Team.GetTeambyName(listBoxTeams.Text);
+            if (login.IsAdmin || login.Id.ToString() == oldTeam.ManagerID)
+            {
+                using (EditTeam eTeam = new EditTeam(listBoxTeams.Text))
+                {
+                    if (eTeam.ShowDialog() == DialogResult.OK)
+                    {
+                        Member oldMgr = Member.GetMemberById(oldTeam.ManagerID);
+                        Member oldCap = Member.GetMemberById(oldTeam.CaptainID);
+                        Team t = eTeam.t;
+                        string message = "You are updating Team:\n" +
+                            $"Name: {oldTeam.Name} to {t.Name}\n" +
+                            $"Manager: {oldMgr.Last_name}, {oldMgr.First_name} to {eTeam.tMgr}\n" +
+                            $"Captain: {oldCap.Last_name}, {oldCap.First_name} to {eTeam.tCap}\n" +
+                            "Are you sure?";
+
+
+                        var result = MessageBox.Show(message, "Edit Team Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (result == DialogResult.Yes)
+                        {
+                            Team.UpdateTeam(t);
+                            Member mgr = Member.GetMemberById(t.ManagerID);
+                            mgr.TeamId = t.Id.ToString();
+                            Member.UpdateMember(mgr);
+                            Member cap = Member.GetMemberById(t.CaptainID);
+                            cap.TeamId = t.Id.ToString();
+                            Member.UpdateMember(cap);
+                            radioButtonAllMembers.Checked = false;
+                            radioButtonAllMembers.Checked = true;
+                            UpdateTeamPage();
+                        }
+                    }
+                }
+            }
+        }
+
         private void UpdateRosterListBox(string teamId)
         {
             List<string> roster = Team.GetRoster(teamId);
@@ -579,13 +710,28 @@ namespace SoccerPagesBTG
 
         private void ListBoxTeams_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             Team t = Team.GetTeambyName(listBoxTeams.SelectedItem.ToString());
             Member mgr = Member.GetMemberById(t.ManagerID);
             Member cpt = Member.GetMemberById(t.CaptainID);
             buttonAddPlayer.Visible = buttonDropPlayer.Visible = login.IsAdmin || login.Id == mgr.Id || login.Id == cpt.Id;
             buttonAssignCaptain.Visible = login.IsAdmin || login.Id == mgr.Id;
+            buttonAddPlayer.Enabled = buttonDropPlayer.Enabled = login.IsAdmin || login.Id == mgr.Id || login.Id == cpt.Id;
+            buttonAssignCaptain.Enabled = login.IsAdmin || login.Id == mgr.Id;
             UpdateRosterListBox(t.Id.ToString());
+        }
+        private void ListBoxRoster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] name = listBoxRoster.SelectedItem.ToString().Split(',');
+            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
+            labelRosterFname.Text = m.First_name;
+            labelRosterLname.Text = m.Last_name;
+            labelEligibleDate.Text = m.EligibleDate.Date.ToString();
+            DateTime today = DateTime.Now.Date;
+            int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
+            DateTime nextSunday = today.AddDays(daysUntilSunday);
+            if (today.DayOfWeek == DayOfWeek.Sunday) { nextSunday.AddDays(7); }
+            if (m.EligibleDate.Date > nextSunday) { labelEligibleDate.BackColor = Color.Red; }
+            else { labelEligibleDate.BackColor = Color.LightCyan; }
         }
 
         #endregion
@@ -602,61 +748,10 @@ namespace SoccerPagesBTG
 
 
 
-
-
         #endregion
 
-        private void ListBoxRoster_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string[] name = listBoxRoster.SelectedItem.ToString().Split(',');
-            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
-            labelRosterFname.Text = m.First_name;
-            labelRosterLname.Text = m.Last_name;
-            labelEligibleDate.Text = m.EligibleDate.Date.ToString();
-            DateTime today = DateTime.Now.Date;
-            int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)today.DayOfWeek + 7) % 7;
-            DateTime nextSunday = today.AddDays(daysUntilSunday);
-            if (today.DayOfWeek == DayOfWeek.Sunday) { nextSunday.AddDays(7); }
-            if (m.EligibleDate.Date > nextSunday) { labelEligibleDate.BackColor = Color.Red; }
-            else { labelEligibleDate.BackColor = Color.LightCyan; }
 
-        }
 
-        private void ButtonAssignCaptain_Click(object sender, EventArgs e)
-        {
-            Team t = Team.GetTeambyName(listBoxTeams.Text);
-            string[] name = listBoxRoster.Text.Split(',');
-            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
-            string capConfirm = $"You are about to make {m.First_name} {m.Last_name}" +
-                      $"the captian of the {t.Name}.  Are you sure?";
-            var result = MessageBox.Show(capConfirm, "Captaincy Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                Member oldCaptain = Member.GetMemberById(t.CaptainID);
-                string note = oldCaptain.Notes;
-                oldCaptain.Notes = string.Empty;
-                Member.UpdateMember(oldCaptain);
-                m.Notes = note;
-                t.CaptainID = m.Id.ToString();
-                Member.UpdateMember(m);
-                UpdateRosterListBox(t.Id.ToString());
-            }
-        }
 
-        private void ButtonDropPlayer_Click(object sender, EventArgs e)
-        {
-            string team = listBoxTeams.Text;
-            string[] name = listBoxRoster.Text.Split(',');
-            Member m = Member.GetMemberById(Member.GetIdByName(name[1].Trim(), name[0]));
-            string removeConfirm = $"You are about to remove {m.First_name} {m.Last_name}" +
-                                  $"from the {team} roster.  Are you sure?";
-            var result=MessageBox.Show(removeConfirm, "Remove Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if(result==DialogResult.Yes)
-            {
-                m.TeamId = string.Empty;
-                Member.UpdateMember(m);
-                UpdateRosterListBox(Team.GetIdByTeamName(team));
-            }
-        }
     }
 }

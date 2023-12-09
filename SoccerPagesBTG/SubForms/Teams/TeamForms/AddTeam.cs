@@ -15,20 +15,26 @@ using MongoDB.Bson;
 
 namespace SoccerPagesBTG
 {
-    public partial class AddEditTeam : Form
+    public partial class AddTeam : Form
     {
-        public string name, manager;
+        public string name, mgrId;
+
 
         private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
         private static readonly string db_str = "BTG_DB";
 
-        public AddEditTeam()
+        public AddTeam()
         {
             InitializeComponent();
             GetAllMemberList();
         }
 
- 
+        private void ButtonOK_Click(object sender, EventArgs e)
+        {
+            name = textBoxName.Text;
+            string[] mgrName = comboBoxManager.Text.Split(',');
+            mgrId = Member.GetIdByName(mgrName[1].Trim(), mgrName[0]);
+        }
 
         private void GetAllMemberList()
         {
@@ -46,6 +52,8 @@ namespace SoccerPagesBTG
                 potentialMgrs.Add((d.Last_name + ", " + d.First_name));
             }
             comboBoxManager.DataSource = potentialMgrs;
+            if(potentialMgrs.Count>0) { comboBoxManager.SelectedIndex = 0; }
+            
         }
     }
 }

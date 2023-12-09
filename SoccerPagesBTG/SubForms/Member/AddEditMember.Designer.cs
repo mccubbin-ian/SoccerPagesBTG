@@ -38,7 +38,6 @@ namespace SoccerPagesBTG
             this.textBoxLName = new System.Windows.Forms.TextBox();
             this.labelTeam = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxNotes = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelAdmin = new System.Windows.Forms.TableLayoutPanel();
             this.radioButtonAdminFalse = new System.Windows.Forms.RadioButton();
             this.radioButtonAdminTrue = new System.Windows.Forms.RadioButton();
@@ -46,7 +45,6 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelScheduler = new System.Windows.Forms.TableLayoutPanel();
             this.radioButtonSchedulerFalse = new System.Windows.Forms.RadioButton();
             this.radioButtonSchedulerTrue = new System.Windows.Forms.RadioButton();
-            this.labelNotes = new System.Windows.Forms.Label();
             this.tableLayoutPanelTFRef = new System.Windows.Forms.TableLayoutPanel();
             this.radioButtonRefFalse = new System.Windows.Forms.RadioButton();
             this.radioButtonRefTrue = new System.Windows.Forms.RadioButton();
@@ -98,7 +96,7 @@ namespace SoccerPagesBTG
             this.comboBoxTeam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTeam.FormattingEnabled = true;
-            this.comboBoxTeam.Location = new System.Drawing.Point(131, 114);
+            this.comboBoxTeam.Location = new System.Drawing.Point(131, 105);
             this.comboBoxTeam.Name = "comboBoxTeam";
             this.comboBoxTeam.Size = new System.Drawing.Size(280, 28);
             this.comboBoxTeam.TabIndex = 9;
@@ -110,7 +108,7 @@ namespace SoccerPagesBTG
             this.labelFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFName.Location = new System.Drawing.Point(6, 3);
             this.labelFName.Name = "labelFName";
-            this.labelFName.Size = new System.Drawing.Size(116, 33);
+            this.labelFName.Size = new System.Drawing.Size(116, 30);
             this.labelFName.TabIndex = 0;
             this.labelFName.Text = "First Name";
             this.labelFName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,9 +128,9 @@ namespace SoccerPagesBTG
             this.labelLName.AutoSize = true;
             this.labelLName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelLName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLName.Location = new System.Drawing.Point(6, 39);
+            this.labelLName.Location = new System.Drawing.Point(6, 36);
             this.labelLName.Name = "labelLName";
-            this.labelLName.Size = new System.Drawing.Size(116, 33);
+            this.labelLName.Size = new System.Drawing.Size(116, 30);
             this.labelLName.TabIndex = 6;
             this.labelLName.Text = "Last Name";
             this.labelLName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -142,7 +140,7 @@ namespace SoccerPagesBTG
             this.textBoxLName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxLName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxLName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLName.Location = new System.Drawing.Point(131, 42);
+            this.textBoxLName.Location = new System.Drawing.Point(131, 39);
             this.textBoxLName.Name = "textBoxLName";
             this.textBoxLName.Size = new System.Drawing.Size(280, 26);
             this.textBoxLName.TabIndex = 7;
@@ -152,9 +150,9 @@ namespace SoccerPagesBTG
             this.labelTeam.AutoSize = true;
             this.labelTeam.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelTeam.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTeam.Location = new System.Drawing.Point(6, 111);
+            this.labelTeam.Location = new System.Drawing.Point(6, 102);
             this.labelTeam.Name = "labelTeam";
-            this.labelTeam.Size = new System.Drawing.Size(116, 33);
+            this.labelTeam.Size = new System.Drawing.Size(116, 30);
             this.labelTeam.TabIndex = 8;
             this.labelTeam.Text = "Team";
             this.labelTeam.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -166,11 +164,9 @@ namespace SoccerPagesBTG
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.10753F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.89247F));
-            this.tableLayoutPanel2.Controls.Add(this.textBoxNotes, 1, 9);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanelAdmin, 1, 8);
             this.tableLayoutPanel2.Controls.Add(this.labelEligible, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanelScheduler, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.labelNotes, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.labelTeam, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanelTFRef, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.textBoxEmail, 1, 2);
@@ -189,32 +185,19 @@ namespace SoccerPagesBTG
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 10;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(417, 367);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(417, 303);
             this.tableLayoutPanel2.TabIndex = 4;
-            // 
-            // textBoxNotes
-            // 
-            this.textBoxNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNotes.Location = new System.Drawing.Point(131, 330);
-            this.textBoxNotes.Name = "textBoxNotes";
-            this.textBoxNotes.Size = new System.Drawing.Size(280, 26);
-            this.textBoxNotes.TabIndex = 19;
             // 
             // tableLayoutPanelAdmin
             // 
@@ -224,7 +207,7 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelAdmin.Controls.Add(this.radioButtonAdminFalse, 1, 0);
             this.tableLayoutPanelAdmin.Controls.Add(this.radioButtonAdminTrue, 0, 0);
             this.tableLayoutPanelAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelAdmin.Location = new System.Drawing.Point(131, 294);
+            this.tableLayoutPanelAdmin.Location = new System.Drawing.Point(131, 270);
             this.tableLayoutPanelAdmin.Name = "tableLayoutPanelAdmin";
             this.tableLayoutPanelAdmin.RowCount = 1;
             this.tableLayoutPanelAdmin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -260,9 +243,9 @@ namespace SoccerPagesBTG
             this.labelEligible.AutoSize = true;
             this.labelEligible.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelEligible.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEligible.Location = new System.Drawing.Point(6, 183);
+            this.labelEligible.Location = new System.Drawing.Point(6, 168);
             this.labelEligible.Name = "labelEligible";
-            this.labelEligible.Size = new System.Drawing.Size(116, 33);
+            this.labelEligible.Size = new System.Drawing.Size(116, 30);
             this.labelEligible.TabIndex = 15;
             this.labelEligible.Text = "EligibleOn?";
             this.labelEligible.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -275,12 +258,12 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelScheduler.Controls.Add(this.radioButtonSchedulerFalse, 1, 0);
             this.tableLayoutPanelScheduler.Controls.Add(this.radioButtonSchedulerTrue, 0, 0);
             this.tableLayoutPanelScheduler.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelScheduler.Location = new System.Drawing.Point(131, 258);
+            this.tableLayoutPanelScheduler.Location = new System.Drawing.Point(131, 237);
             this.tableLayoutPanelScheduler.Name = "tableLayoutPanelScheduler";
             this.tableLayoutPanelScheduler.RowCount = 1;
             this.tableLayoutPanelScheduler.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelScheduler.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanelScheduler.Size = new System.Drawing.Size(280, 27);
+            this.tableLayoutPanelScheduler.Size = new System.Drawing.Size(280, 24);
             this.tableLayoutPanelScheduler.TabIndex = 14;
             // 
             // radioButtonSchedulerFalse
@@ -290,7 +273,7 @@ namespace SoccerPagesBTG
             this.radioButtonSchedulerFalse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonSchedulerFalse.Location = new System.Drawing.Point(72, 3);
             this.radioButtonSchedulerFalse.Name = "radioButtonSchedulerFalse";
-            this.radioButtonSchedulerFalse.Size = new System.Drawing.Size(205, 21);
+            this.radioButtonSchedulerFalse.Size = new System.Drawing.Size(205, 18);
             this.radioButtonSchedulerFalse.TabIndex = 1;
             this.radioButtonSchedulerFalse.TabStop = true;
             this.radioButtonSchedulerFalse.Text = "False";
@@ -302,22 +285,10 @@ namespace SoccerPagesBTG
             this.radioButtonSchedulerTrue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonSchedulerTrue.Location = new System.Drawing.Point(3, 3);
             this.radioButtonSchedulerTrue.Name = "radioButtonSchedulerTrue";
-            this.radioButtonSchedulerTrue.Size = new System.Drawing.Size(63, 21);
+            this.radioButtonSchedulerTrue.Size = new System.Drawing.Size(63, 18);
             this.radioButtonSchedulerTrue.TabIndex = 0;
             this.radioButtonSchedulerTrue.Text = "True";
             this.radioButtonSchedulerTrue.UseVisualStyleBackColor = true;
-            // 
-            // labelNotes
-            // 
-            this.labelNotes.AutoSize = true;
-            this.labelNotes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNotes.Location = new System.Drawing.Point(6, 327);
-            this.labelNotes.Name = "labelNotes";
-            this.labelNotes.Size = new System.Drawing.Size(116, 37);
-            this.labelNotes.TabIndex = 17;
-            this.labelNotes.Text = "Notes";
-            this.labelNotes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanelTFRef
             // 
@@ -327,11 +298,11 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelTFRef.Controls.Add(this.radioButtonRefFalse, 1, 0);
             this.tableLayoutPanelTFRef.Controls.Add(this.radioButtonRefTrue, 0, 0);
             this.tableLayoutPanelTFRef.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelTFRef.Location = new System.Drawing.Point(131, 222);
+            this.tableLayoutPanelTFRef.Location = new System.Drawing.Point(131, 204);
             this.tableLayoutPanelTFRef.Name = "tableLayoutPanelTFRef";
             this.tableLayoutPanelTFRef.RowCount = 1;
             this.tableLayoutPanelTFRef.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelTFRef.Size = new System.Drawing.Size(280, 27);
+            this.tableLayoutPanelTFRef.Size = new System.Drawing.Size(280, 24);
             this.tableLayoutPanelTFRef.TabIndex = 12;
             // 
             // radioButtonRefFalse
@@ -341,7 +312,7 @@ namespace SoccerPagesBTG
             this.radioButtonRefFalse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonRefFalse.Location = new System.Drawing.Point(72, 3);
             this.radioButtonRefFalse.Name = "radioButtonRefFalse";
-            this.radioButtonRefFalse.Size = new System.Drawing.Size(205, 21);
+            this.radioButtonRefFalse.Size = new System.Drawing.Size(205, 18);
             this.radioButtonRefFalse.TabIndex = 1;
             this.radioButtonRefFalse.TabStop = true;
             this.radioButtonRefFalse.Text = "False";
@@ -353,7 +324,7 @@ namespace SoccerPagesBTG
             this.radioButtonRefTrue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonRefTrue.Location = new System.Drawing.Point(3, 3);
             this.radioButtonRefTrue.Name = "radioButtonRefTrue";
-            this.radioButtonRefTrue.Size = new System.Drawing.Size(63, 21);
+            this.radioButtonRefTrue.Size = new System.Drawing.Size(63, 18);
             this.radioButtonRefTrue.TabIndex = 0;
             this.radioButtonRefTrue.Text = "True";
             this.radioButtonRefTrue.UseVisualStyleBackColor = true;
@@ -363,7 +334,7 @@ namespace SoccerPagesBTG
             this.textBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmail.Location = new System.Drawing.Point(131, 78);
+            this.textBoxEmail.Location = new System.Drawing.Point(131, 72);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(280, 26);
             this.textBoxEmail.TabIndex = 9;
@@ -376,11 +347,11 @@ namespace SoccerPagesBTG
             this.tableLayoutPanelTFPlayer.Controls.Add(this.radioButtonPlayerFalse, 1, 0);
             this.tableLayoutPanelTFPlayer.Controls.Add(this.radioButtonPlayerTrue, 0, 0);
             this.tableLayoutPanelTFPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelTFPlayer.Location = new System.Drawing.Point(131, 150);
+            this.tableLayoutPanelTFPlayer.Location = new System.Drawing.Point(131, 138);
             this.tableLayoutPanelTFPlayer.Name = "tableLayoutPanelTFPlayer";
             this.tableLayoutPanelTFPlayer.RowCount = 1;
             this.tableLayoutPanelTFPlayer.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelTFPlayer.Size = new System.Drawing.Size(280, 27);
+            this.tableLayoutPanelTFPlayer.Size = new System.Drawing.Size(280, 24);
             this.tableLayoutPanelTFPlayer.TabIndex = 3;
             // 
             // radioButtonPlayerFalse
@@ -389,7 +360,7 @@ namespace SoccerPagesBTG
             this.radioButtonPlayerFalse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonPlayerFalse.Location = new System.Drawing.Point(71, 3);
             this.radioButtonPlayerFalse.Name = "radioButtonPlayerFalse";
-            this.radioButtonPlayerFalse.Size = new System.Drawing.Size(206, 21);
+            this.radioButtonPlayerFalse.Size = new System.Drawing.Size(206, 18);
             this.radioButtonPlayerFalse.TabIndex = 1;
             this.radioButtonPlayerFalse.Text = "False";
             this.radioButtonPlayerFalse.UseVisualStyleBackColor = true;
@@ -401,7 +372,7 @@ namespace SoccerPagesBTG
             this.radioButtonPlayerTrue.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radioButtonPlayerTrue.Location = new System.Drawing.Point(3, 3);
             this.radioButtonPlayerTrue.Name = "radioButtonPlayerTrue";
-            this.radioButtonPlayerTrue.Size = new System.Drawing.Size(62, 21);
+            this.radioButtonPlayerTrue.Size = new System.Drawing.Size(62, 18);
             this.radioButtonPlayerTrue.TabIndex = 0;
             this.radioButtonPlayerTrue.TabStop = true;
             this.radioButtonPlayerTrue.Text = "True";
@@ -412,9 +383,9 @@ namespace SoccerPagesBTG
             this.labelPlayer.AutoSize = true;
             this.labelPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPlayer.Location = new System.Drawing.Point(6, 147);
+            this.labelPlayer.Location = new System.Drawing.Point(6, 135);
             this.labelPlayer.Name = "labelPlayer";
-            this.labelPlayer.Size = new System.Drawing.Size(116, 33);
+            this.labelPlayer.Size = new System.Drawing.Size(116, 30);
             this.labelPlayer.TabIndex = 10;
             this.labelPlayer.Text = "IsPlayer?";
             this.labelPlayer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -424,9 +395,9 @@ namespace SoccerPagesBTG
             this.labelEmail.AutoSize = true;
             this.labelEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEmail.Location = new System.Drawing.Point(6, 75);
+            this.labelEmail.Location = new System.Drawing.Point(6, 69);
             this.labelEmail.Name = "labelEmail";
-            this.labelEmail.Size = new System.Drawing.Size(116, 33);
+            this.labelEmail.Size = new System.Drawing.Size(116, 30);
             this.labelEmail.TabIndex = 8;
             this.labelEmail.Text = "E-mail";
             this.labelEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -436,7 +407,7 @@ namespace SoccerPagesBTG
             this.labelAdmin.AutoSize = true;
             this.labelAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdmin.Location = new System.Drawing.Point(6, 291);
+            this.labelAdmin.Location = new System.Drawing.Point(6, 267);
             this.labelAdmin.Name = "labelAdmin";
             this.labelAdmin.Size = new System.Drawing.Size(116, 33);
             this.labelAdmin.TabIndex = 16;
@@ -448,9 +419,9 @@ namespace SoccerPagesBTG
             this.labelScheduler.AutoSize = true;
             this.labelScheduler.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelScheduler.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelScheduler.Location = new System.Drawing.Point(6, 255);
+            this.labelScheduler.Location = new System.Drawing.Point(6, 234);
             this.labelScheduler.Name = "labelScheduler";
-            this.labelScheduler.Size = new System.Drawing.Size(116, 33);
+            this.labelScheduler.Size = new System.Drawing.Size(116, 30);
             this.labelScheduler.TabIndex = 13;
             this.labelScheduler.Text = "IsScheduler?";
             this.labelScheduler.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -460,9 +431,9 @@ namespace SoccerPagesBTG
             this.labelRef.AutoSize = true;
             this.labelRef.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelRef.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRef.Location = new System.Drawing.Point(6, 219);
+            this.labelRef.Location = new System.Drawing.Point(6, 201);
             this.labelRef.Name = "labelRef";
-            this.labelRef.Size = new System.Drawing.Size(116, 33);
+            this.labelRef.Size = new System.Drawing.Size(116, 30);
             this.labelRef.TabIndex = 11;
             this.labelRef.Text = "IsReferee?";
             this.labelRef.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -471,7 +442,7 @@ namespace SoccerPagesBTG
             // 
             this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(131, 186);
+            this.dateTimePicker1.Location = new System.Drawing.Point(131, 171);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(280, 26);
             this.dateTimePicker1.TabIndex = 18;
@@ -481,7 +452,7 @@ namespace SoccerPagesBTG
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(551, 367);
+            this.ClientSize = new System.Drawing.Size(551, 303);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -511,7 +482,6 @@ namespace SoccerPagesBTG
         private System.Windows.Forms.TextBox textBoxLName;
         private System.Windows.Forms.Label labelTeam;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.TextBox textBoxNotes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAdmin;
         private System.Windows.Forms.RadioButton radioButtonAdminFalse;
         private System.Windows.Forms.RadioButton radioButtonAdminTrue;
@@ -519,7 +489,6 @@ namespace SoccerPagesBTG
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelScheduler;
         private System.Windows.Forms.RadioButton radioButtonSchedulerFalse;
         private System.Windows.Forms.RadioButton radioButtonSchedulerTrue;
-        private System.Windows.Forms.Label labelNotes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTFRef;
         private System.Windows.Forms.RadioButton radioButtonRefFalse;
         private System.Windows.Forms.RadioButton radioButtonRefTrue;

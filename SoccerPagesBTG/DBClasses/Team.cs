@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SoccerPagesBTG.DBClasses
 {
-    class Team
+    public class Team
     {
         private static readonly string conn_str = Properties.Settings.Default.mongoDbConnect;
         private static readonly string db_str = Properties.Settings.Default.db;

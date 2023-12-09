@@ -1,7 +1,7 @@
 ﻿
 namespace SoccerPagesBTG
 {
-    partial class AddEditTeam
+    partial class AddTeam
     {
         /// <summary>
         /// Required designer variable.
@@ -106,6 +106,7 @@ namespace SoccerPagesBTG
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK/Commit";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // buttonCancel
             // 
@@ -117,7 +118,7 @@ namespace SoccerPagesBTG
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
-            // AddEditTeam
+            // AddTeam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -125,7 +126,7 @@ namespace SoccerPagesBTG
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "AddEditTeam";
+            this.Name = "AddTeam";
             this.Text = "Add Team";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

@@ -20,7 +20,7 @@ namespace SoccerPagesBTG
             comboBoxLogin.SelectedIndex = 0;
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
+        private void ButtonLogin_Click(object sender, EventArgs e)
         {
             string[] name = comboBoxLogin.Text.Split(new string[] { ") " }, StringSplitOptions.None);
             loginId=Member.GetIdByName(name[1].Split(',')[1].Trim(), name[1].Split(',')[0].Trim());

@@ -18,13 +18,15 @@ namespace SoccerPagesBTG
         public AddEditField()
         {
             InitializeComponent();
-            this.Text = "Add Field";
+            Text = "Add Field";
+            textBoxID.Enabled = false;
+            textBoxName.Select();
         }
 
         public AddEditField(Field fd)
         {
             InitializeComponent();
-            this.Text = "Edit Field";
+            Text = "Edit Field";
             textBoxID.Text = fd.Id.ToString();
             textBoxName.Text = fd.Name;
             textBoxA1.Text = fd.Addr1;
@@ -32,9 +34,10 @@ namespace SoccerPagesBTG
             textBoxCity.Text = fd.City;
             textBoxState.Text = fd.State;
             textBoxZip.Text = fd.Zip;
+            textBoxName.Select();
         }
 
-        private void buttonOK_Click(object sender, EventArgs e)
+        private void ButtonOK_Click(object sender, EventArgs e)
         {
             f = new Field()
             {

@@ -161,6 +161,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBClasses\RedCard.cs" />
+    <Compile Include="SubForms\Game\RedCardReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Game\RedCardReport.Designer.cs">
+      <DependentUpon>RedCardReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForms\Game\ScoreReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Game\ScoreReport.Designer.cs">
+      <DependentUpon>ScoreReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubForms\Field\AddEditField.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,10 +186,10 @@
     <Compile Include="SubForms\Member\AddEditMember.Designer.cs">
       <DependentUpon>AddEditMember.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\Teams\Team\AddTeam.cs">
+    <Compile Include="SubForms\Teams\TeamForms\AddTeam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\Teams\Team\AddTeam.Designer.cs">
+    <Compile Include="SubForms\Teams\TeamForms\AddTeam.Designer.cs">
       <DependentUpon>AddTeam.cs</DependentUpon>
     </Compile>
     <Compile Include="SubForms\Game\AddGame.cs">
@@ -185,10 +198,10 @@
     <Compile Include="SubForms\Game\AddGame.Designer.cs">
       <DependentUpon>AddGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="SubForms\Teams\AddToRoster.cs">
+    <Compile Include="SubForms\Teams\Roster\AddToRoster.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SubForms\Teams\AddToRoster.Designer.cs">
+    <Compile Include="SubForms\Teams\Roster\AddToRoster.Designer.cs">
       <DependentUpon>AddToRoster.cs</DependentUpon>
     </Compile>
     <Compile Include="DBClasses\Field.cs" />
@@ -209,19 +222,31 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubForms\Teams\TeamForms\EditTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForms\Teams\TeamForms\EditTeam.Designer.cs">
+      <DependentUpon>EditTeam.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SubForms\Game\RedCardReport.resx">
+      <DependentUpon>RedCardReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForms\Game\ScoreReport.resx">
+      <DependentUpon>ScoreReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SubForms\Field\AddEditField.resx">
       <DependentUpon>AddEditField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubForms\Member\AddEditMember.resx">
       <DependentUpon>AddEditMember.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\Teams\Team\AddTeam.resx">
+    <EmbeddedResource Include="SubForms\Teams\TeamForms\AddTeam.resx">
       <DependentUpon>AddTeam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubForms\Game\AddGame.resx">
       <DependentUpon>AddGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SubForms\Teams\AddToRoster.resx">
+    <EmbeddedResource Include="SubForms\Teams\Roster\AddToRoster.resx">
       <DependentUpon>AddToRoster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BTGMain.resx">
@@ -239,6 +264,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SubForms\Teams\TeamForms\EditTeam.resx">
+      <DependentUpon>EditTeam.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="libmongocrypt.dylib" />
     <None Include="libmongocrypt.so" />
     <None Include="packages.config" />
@@ -261,9 +289,7 @@
   <ItemGroup>
     <Content Include="mongocrypt.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SubForms\Teams\Roster\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MongoDB.Libmongocrypt.1.8.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('..\packages\MongoDB.Libmongocrypt.1.8.0\build\MongoDB.Libmongocrypt.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
