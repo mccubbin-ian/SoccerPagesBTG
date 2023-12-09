@@ -20,8 +20,8 @@ namespace SoccerPagesBTG
         public string name, mgrId;
 
 
-        private static readonly string conn_str = "mongodb+srv://test:test@testdb.ygmwifa.mongodb.net/";
-        private static readonly string db_str = "BTG_DB";
+        private static readonly string conn_str = "<yourDBconn>";
+        private static readonly string db_str = "<yourDBstring";
 
         public AddTeam()
         {
